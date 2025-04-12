@@ -3,4 +3,4 @@ const ExistingEmailStats = () => {
     <div>ExistingEmailStats</div>
   )
 }
-export default ExistingEmailStats
+export default ExistingEmailStats;

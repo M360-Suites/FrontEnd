@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <div className='sticky top-0 z-50 bg-white px-4 py-2 border-b border-gray-200'>
+    <div className='sticky top-0 z-50 bg-white px-5 py-2 border-b border-gray-200 min-w-full'>
       <div className='flex justify-between items-center'>
         {/* Logo */}
         <div className='flex-shrink-0 h-[35px] w-[120px] md:w-[150px] py-2'>
@@ -68,12 +68,12 @@ const Header = () => {
             )}
           </div>
 
-          <button onClick={toggleMenu} className='text-gray-600'>
-            <Icon
-              icon={isMenuOpen ? "mdi:close" : "mdi:menu"}
-              className='w-6 h-6'
-            />
-          </button>
+            <button onClick={toggleMenu} className='text-gray-600'>
+              <Icon
+                icon={isMenuOpen ? "mdi:close" : "mdi:menu"}
+                className='w-6 h-6'
+              />
+            </button>
         </div>
 
         {/* User section - desktop */}

@@ -23,5 +23,36 @@ export const userProfile = {
   phone: "08134567890",
   address: "123 Main St, City, Country",
   image: "https://randomuser.me/api/portraits/men/1.jpg",
-  tier:"2"
+  tier: "2",
 };
+
+export const sampleStats = [
+  {
+    title: "Total emails sent",
+    value: 12845,
+    change: 12.5,
+    trend: "up",
+    fromText: "vs. previous 30 days"
+  },
+  {
+    title: "Total Ads reach",
+    value: 3642,
+    change: 8.2,
+    trend: "up",
+    fromText: "vs. previous campaign"
+  },
+  {
+    title: "Social Engagement",
+    value: 7891,
+    change: 3.7,
+    trend: "down",
+    fromText: "vs. last week"
+  },
+  {
+    title: "Conversion Rate",
+    value: 2.4,
+    change: 5.1,
+    trend: "up",
+    fromText: "vs. previous month"
+  }
+];

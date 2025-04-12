@@ -14,7 +14,7 @@ const ResetPassword = () => {
     setShowSuccessMessage(true);
     setTimeout(() => {
       setShowSuccessMessage(false);
-    }, 3000);
+    }, 5000);
   };
 
   return (
