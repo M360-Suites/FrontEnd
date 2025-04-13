@@ -21,6 +21,12 @@ body {
 .contact-card {
   background: #fb37480d;
 }
+.connect-card{
+  background: #FF5C020A;
+}
+.create-card{
+  background: #4D00FF0A;
+}
 
 .camp-card {
   background: #ffdb430d;

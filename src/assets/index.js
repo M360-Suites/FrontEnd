@@ -18,7 +18,10 @@ import ads from "./icons/ads.png";
 import mail from "./icons/mail.png";
 import post from "./icons/post.png";
 import web from "./icons/web.png";
-
+import connect from "./icons/connect.png";
+import create from "./icons/create.png";
+import socials from "./icons/socials.png";
+import seo from "./icons/seo.png";
 // website dummy templates
 import website1 from "./images/website1.png";
 import website2 from "./images/website2.png";
@@ -26,6 +29,10 @@ import website3 from "./images/website3.png";
 
 export {
   Alert,
+  seo,
+  connect,
+  create,
+  socials,
   Analytics,
   AddMedia,
   Forgot,

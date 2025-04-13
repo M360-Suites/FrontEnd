@@ -1,6 +1,6 @@
 const EmailSubscribers = () => {
   return (
-    <div>EmailSubscribers</div>
+    <div className="p-4">EmailSubscribers</div>
   )
 }
 export default EmailSubscribers

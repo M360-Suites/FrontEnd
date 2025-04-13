@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Not } from "../../assets";
 import Button from "../../components/ui/Button";
 import { gsap } from "gsap";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
   const imageRef = useRef(null);
@@ -93,10 +94,12 @@ const NotFound = () => {
       </div>
 
       <div className='flex justify-center' ref={buttonRef}>
-        <Button
-          className={"bg-primary-orange px-4 py-4 rounded-lg"}
-          title={"Back to civilization"}
-        />
+      <Link to={"/dashboard"}>
+          <Button
+            className={"bg-primary-orange px-4 py-4 rounded-lg"}
+            title={"Back to civilization"}
+          />
+      </Link>
       </div>
     </div>
   );
