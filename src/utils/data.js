@@ -61,7 +61,6 @@ export const sideBarData = [
       { name: "Templates", path: "/email-campaigns/templates" },
       { name: "Campaigns", path: "/email-campaigns/campaigns" },
       { name: "Subscribers", path: "/email-campaigns/subscribers" },
-
     ],
     icon: "material-symbols:campaign-outline",
   },
@@ -87,6 +86,7 @@ export const sideBarData = [
   },
 ];
 
+import { a } from "framer-motion/client";
 import { ads, mail, post, web } from "../assets";
 
 export const dashBoardCardsData = [
@@ -113,5 +113,43 @@ export const dashBoardCardsData = [
     title: "Create Ads",
     body: "Create Ads that reach wide audience with just one click. Create Ads that converts",
     link: "/ads-manager",
+  },
+];
+
+export const socialAccounts = [
+  {
+    name: "Facebook",
+    icon: "logos:facebook",
+    ad: "Image, videos, stories & reels ads",
+  },
+  {
+    name: "Instagram",
+    icon: "logos:instagram-icon",
+    ad: "Image, videos, stories & reels ads",
+  },
+  {
+    name: "X (Formerly Twitter)",
+    icon: "ri:twitter-x-line",
+    ad: "promoted tweets, promoted accounts, promoted hashtags, promoted trends, promoted keywords, and more",
+  },
+  {
+    name: "LinkedIn",
+    icon: "logos:linkedin-icon",
+    ad:"promoted posts, promoted accounts, promoted hashtags, promoted trends, promoted keywords, and more",
+  },
+  {
+    name: "YouTube",
+    icon: "logos:youtube-icon",
+    ad:"skippable & non-skippable video ads, sponsored content, and more",
+  },
+  {
+    name: "TikTok",
+    icon: "logos:tiktok-icon",
+    ad:"in-feed ads, top view ads, and more",
+  },
+  {
+    name: "Pinterest",
+    icon: "logos:pinterest",
+    ad:"promoted pins, promoted collections, and more",
   },
 ];

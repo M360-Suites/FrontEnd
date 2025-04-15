@@ -22,13 +22,20 @@ import connect from "./icons/connect.png";
 import create from "./icons/create.png";
 import socials from "./icons/socials.png";
 import seo from "./icons/seo.png";
+import Ads from "./images/ads.png";
 // website dummy templates
 import website1 from "./images/website1.png";
 import website2 from "./images/website2.png";
 import website3 from "./images/website3.png";
+// posts
+import post1 from "./images/post1.jpg";
+import post2 from "./images/post2.jpg";
+import post3 from "./images/post3.jpg";
+import post4 from "./images/post4.jpg";
 
 export {
   Alert,
+  Ads,
   seo,
   connect,
   create,
@@ -49,6 +56,10 @@ export {
   website1,
   website2,
   website3,
+  post1,
+  post2,
+  post3,
+  post4,
   mailSent,
   setUpMail,
   importContact,

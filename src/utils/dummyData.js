@@ -15,7 +15,7 @@ export const notifications = [
     body: "Your latest ad campaign is performing 20% better than last week. Check insights now!",
   },
 ];
-import { website1, website2, website3 } from "../assets";
+import { post1, post2, post3, post4, website1, website2, website3 } from "../assets";
 export const emailTemplates = [
   {
     title: "Simple Template",
@@ -50,7 +50,7 @@ export const userProfile = {
   email: "m360bakes@gmail.com",
   phone: "08134567890",
   address: "123 Main St, City, Country",
-  image: "https://randomuser.me/api/portraits/men/1.jpg",
+  image: "https://randomuser.me/api/portraits/men/4.jpg",
   tier: "2",
 };
 
@@ -82,5 +82,50 @@ export const sampleStats = [
     change: 5.1,
     trend: "up",
     fromText: "vs. previous month",
+  },
+];
+
+export const dummyPosts = [
+  {
+    body: "Your future is created by what you do today, not tomorrow.Take that step!😎🔥",
+    hashTag: "#KeepGoing",
+    date: "2023-06-20",
+    time: "12:30 PM",
+    image: post1,
+  },
+  {
+    body:"We're excited to announce that we've just launched our new website! Take a look and let us know what you think.👀👍",
+    hashTag: "#NewWebsite",
+    date: "2023-06-19",
+    time: "10:15 AM",
+    image: post2,
+  },
+  {
+    body: "We're excited to announce that we've just launched our new website! Take a look and let us know what you think.👀👍",
+    hashTag: "#NewWebsite",
+    date: "2023-06-19",
+    time: "10:15 AM",
+    image: post3,
+  },
+  {
+    body: "We're excited to announce that we've just launched our new website! Take a look and let us know what you think.👀👍",
+    hashTag: "#NewWebsite",
+    date: "2023-06-19",
+    time: "10:15 AM",
+    image: post3,
+  },
+  {
+    body: "We're excited to announce that we've just launched our new website! Take a look and let us know what you think.👀👍",
+    hashTag: "#NewWebsite",
+    date: "2023-06-19",
+    time: "10:15 AM",
+    image: post4,
+  },
+  {
+    body: "We're excited to announce that we've just launched our new website! Take a look and let us know what you think.👀👍",
+    hashTag: "#NewWebsite",
+    date: "2023-06-19",
+    time: "10:15 AM",
+    image: post3,
   },
 ];

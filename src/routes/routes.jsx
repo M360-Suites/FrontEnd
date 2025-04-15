@@ -17,6 +17,7 @@ import EmailSubscribers from "../components/dashboard/EmailCampaign/EmailSubscri
 import EmailTemplates from "../components/dashboard/EmailCampaign/EmailTemplates";
 import SocialScheduler from "../screens/dashboard/SocialScheduler";
 import SEO from "../screens/dashboard/SEO";
+import AdsManager from "../screens/dashboard/AdsManager";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/social-scheduler",
         element: <SocialScheduler />,
+      },
+      {
+        path: "/ads-manager",
+        element: <AdsManager />,
       },
       {
         path: "/seo-tools",

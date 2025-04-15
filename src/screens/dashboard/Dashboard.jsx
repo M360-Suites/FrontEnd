@@ -5,7 +5,7 @@ import ExistingUserStats from "../../components/dashboard/ExistingUserStats";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const isNewUser = false;
+  const isNewUser = true;
 
   return (
     <>
