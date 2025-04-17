@@ -85,6 +85,24 @@ export const sampleStats = [
   },
 ];
 
+export const adsAnalytics = [
+  {
+    title:"Impression",
+    count:"20,000",
+    change:"-2.5%",
+  },
+  {
+    title:"eCPM",
+    count:"$1.86",
+    change:"-12.67%"
+  },
+  {
+    title:"Visibility",
+    count:"58.5%",
+    change:"+4.2%"
+  }
+];
+
 export const dummyPosts = [
   {
     body: "Your future is created by what you do today, not tomorrow.Take that step!😎🔥",
@@ -129,3 +147,36 @@ export const dummyPosts = [
     image: post3,
   },
 ];
+
+export const liveAdspost =[
+  {
+    icon:"logos:facebook",
+    title:"Marketing like a pro",
+    body:"Market like a pro to stand out in the competitive world",
+    image:post1,
+    postedAt:"today at 10:00 AM",
+    engagement:"2,000",
+    views:"1,600",
+    clicks:"100",
+  },
+  {
+    icon:"logos:instagram-icon",
+    title:"Art Of Engagement Capitalism",
+    body:"Capitalism is the art of engagement",
+    image:post2,
+    postedAt:"today at 08:00 AM",
+    engagement:"62,000",
+    views:"19,000",
+    clicks:"11,000",
+  },
+  {
+    icon:"logos:linkedin-icon",
+    title:"The Art of Engagement",
+    body:"Engagement is the key to success",
+    image:post3,
+    postedAt:"today at 08:00 AM",
+    engagement:"12,000",
+    views:"1,000",
+    clicks:"100",
+  }
+]
