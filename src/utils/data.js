@@ -46,12 +46,23 @@ export const sideBarData = [
   {
     name: "Create Website",
     path: "/create-website",
+    dropdownItems: [
+      { name: "Website", path: "/create-website" },
+      { name: "Templates", path: "/create-website/templates" },
+      { name: "Website Analytics", path: "/create-website/analytics" },
+    ],
     icon: "carbon:create-link",
   },
   {
     name: "Social Scheduler",
     path: "/social-scheduler",
     icon: "healthicons:i-schedule-school-date-time",
+    dropdownItems: [
+      { name: "Dashboard", path: "/social-scheduler" },
+      { name: "Create Post", path: "/social-scheduler/post" },
+      { name: "All Posts", path: "/social-scheduler/all-posts" },
+      { name: "Channels", path: "/social-scheduler/channels" },
+    ],
   },
   {
     name: "Email Campaigns",
@@ -78,6 +89,15 @@ export const sideBarData = [
     name: "SEO Tools",
     path: "/seo-tools",
     icon: "ri:seo-fill",
+    dropdownItems: [
+      { name: "SEO Dashboard", path: "/seo-tools" },
+      { name: "Site Audit", path: "/seo-tools/site-audit" },
+      { name: "Domain Overview", path: "/seo-tools/domain-overview" },
+      { name: "Traffic Analytics", path: "/seo-tools/traffic-analytics" },
+      { name: "Keyword overview", path: "/seo-tools/keyword-overview" },
+      { name: "Backlink Audit", path: "/seo-tools/backlink-audit" },
+      { name: "Backlink Analytic", path: "/seo-tools/backlink-analytic" },
+    ],
   },
   {
     name: "Support",
@@ -86,7 +106,6 @@ export const sideBarData = [
   },
 ];
 
-import { a } from "framer-motion/client";
 import { ads, mail, post, web } from "../assets";
 
 export const dashBoardCardsData = [
@@ -135,21 +154,21 @@ export const socialAccounts = [
   {
     name: "LinkedIn",
     icon: "logos:linkedin-icon",
-    ad:"promoted posts, promoted accounts, promoted hashtags, promoted trends, promoted keywords, and more",
+    ad: "promoted posts, promoted accounts, promoted hashtags, promoted trends, promoted keywords, and more",
   },
-  {
-    name: "YouTube",
-    icon: "logos:youtube-icon",
-    ad:"skippable & non-skippable video ads, sponsored content, and more",
-  },
-  {
-    name: "TikTok",
-    icon: "logos:tiktok-icon",
-    ad:"in-feed ads, top view ads, and more",
-  },
-  {
-    name: "Pinterest",
-    icon: "logos:pinterest",
-    ad:"promoted pins, promoted collections, and more",
-  },
+  // {
+  //   name: "YouTube",
+  //   icon: "logos:youtube-icon",
+  //   ad: "skippable & non-skippable video ads, sponsored content, and more",
+  // },
+  // {
+  //   name: "TikTok",
+  //   icon: "logos:tiktok-icon",
+  //   ad: "in-feed ads, top view ads, and more",
+  // },
+  // {
+  //   name: "Pinterest",
+  //   icon: "logos:pinterest",
+  //   ad: "promoted pins, promoted collections, and more",
+  // },
 ];

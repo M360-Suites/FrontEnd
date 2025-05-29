@@ -6,7 +6,7 @@ import OnBoardingHeader from "./OnBoardingHeader";
 
 const AppLayout = () => {
   const location = useLocation();
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   useEffect(() => {
     window.scrollTo(0, 0);

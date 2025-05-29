@@ -2,7 +2,7 @@ import FirstTimeSchedule from "../../components/dashboard/SocialScheduler/FirstT
 import ExistingUserSchedule from "../../components/dashboard/SocialScheduler/ExistingUserSchedule";
 
 const SocialScheduler = () => {
-  const isNewSchedule = true;
+  const isNewSchedule = false;
 
   return (
     <>{isNewSchedule ? <FirstTimeSchedule /> : <ExistingUserSchedule />}</>

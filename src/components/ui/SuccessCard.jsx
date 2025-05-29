@@ -1,4 +1,3 @@
-import React from "react";
 import { Pop } from "../../assets";
 import Button from "./Button";
 

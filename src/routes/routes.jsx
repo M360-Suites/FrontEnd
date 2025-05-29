@@ -18,7 +18,15 @@ import EmailTemplates from "../components/dashboard/EmailCampaign/EmailTemplates
 import SocialScheduler from "../screens/dashboard/SocialScheduler";
 import SEO from "../screens/dashboard/SEO";
 import AdsManager from "../screens/dashboard/AdsManager";
-
+import Templates from "../components/dashboard/Website/Templates";
+import WebsiteAnalytics from "../components/dashboard/Website/WebsiteAnalytics";
+import AllCampaigns from "../components/dashboard/EmailCampaign/AllCampaigns";
+import SiteAudit from "../components/dashboard/seo/SiteAudit";
+import DomainOverview from "../components/dashboard/seo/DomainOverview";
+import TrafficAnalytics from "../components/dashboard/seo/TrafficAnalytics";
+import KeywordOverview from "../components/dashboard/seo/KeywordOverview";
+import BacklinkAudit from "../components/dashboard/seo/BacklinkAudit";
+import BacklinkAnalytic from "../components/dashboard/seo/BacklinkAnalytic";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -54,6 +62,14 @@ const router = createBrowserRouter([
         element: <CreateWebsite />,
       },
       {
+        path: "/create-website/templates",
+        element: <Templates />,
+      },
+      {
+        path: "/create-website/analytics",
+        element: <WebsiteAnalytics />,
+      },
+      {
         path: "/social-scheduler",
         element: <SocialScheduler />,
       },
@@ -66,6 +82,30 @@ const router = createBrowserRouter([
         element: <SEO />,
       },
       {
+        path: "/seo-tools/site-audit",
+        element: <SiteAudit />,
+      },
+      {
+        path: "/seo-tools/backlink-audit",
+        element: <BacklinkAudit />,
+      },
+         {
+        path: "/seo-tools/backlink-analytic",
+        element: <BacklinkAnalytic />,
+      },
+      {
+        path: "/seo-tools/domain-overview",
+        element: <DomainOverview />,
+      },
+      {
+        path: "/seo-tools/traffic-analytics",
+        element: <TrafficAnalytics />,
+      },
+      {
+        path: "/seo-tools/keyword-overview",
+        element: <KeywordOverview />,
+      },
+      {
         path: "/email-campaigns/analytics",
         element: <EmailCampaigns />,
       },
@@ -76,6 +116,10 @@ const router = createBrowserRouter([
       {
         path: "/email-campaigns/templates",
         element: <EmailTemplates />,
+      },
+      {
+        path: "/email-campaigns/campaigns",
+        element: <AllCampaigns />,
       },
       {
         element: <ForgotPassLayout />,

@@ -12,7 +12,6 @@ import {
   BarElement,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import LiveAds from "./LiveAds";
 
 // Register ChartJS components
@@ -235,8 +234,8 @@ const AdsAnalytics = () => {
                     className='bg-white border border-gray-300 rounded-md px-3 sm:px-6 py-1.5 sm:py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary-orange focus:border-transparent'
                   >
                     <option value='annual'>Annual</option>
-                    <option value='monthly'>Monthly</option>
-                    <option value='daily'>Daily</option>
+                    <option value='monthly'>Month</option>
+                    <option value='daily'>Day</option>
                   </select>
                 </div>
 

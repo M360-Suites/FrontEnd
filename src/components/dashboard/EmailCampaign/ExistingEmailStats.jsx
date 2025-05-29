@@ -3,6 +3,8 @@ import { sampleStats } from "../../../utils/dummyData";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import CreateCampaignModal from "./CreateCampaignModal";
 import { useState } from "react";
+import CampaignReports from "./CampaignReports";
+import EmailPerfomanceChart from "./EmailPerfomanceChart";
 
 const ExistingEmailStats = () => {
   const [showModal, setShowModal] = useState(false);
@@ -99,10 +101,13 @@ const ExistingEmailStats = () => {
         </div>
 
         {/* reports */}
+
         {/* to do:
         - reports
         - analytics
         - email performance */}
+        <CampaignReports />
+        <EmailPerfomanceChart />
       </div>
     </>
   );
