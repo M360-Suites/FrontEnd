@@ -27,116 +27,220 @@ import TrafficAnalytics from "../components/dashboard/seo/TrafficAnalytics";
 import KeywordOverview from "../components/dashboard/seo/KeywordOverview";
 import BacklinkAudit from "../components/dashboard/seo/BacklinkAudit";
 import BacklinkAnalytic from "../components/dashboard/seo/BacklinkAnalytic";
+import ProtectedRoute from '../routes/ProtectedRoute';
+import PublicRoute from '../routes/PublicRoute';
+import { AuthProvider } from '../context/UseAuth';
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
+      // Public routes (onboarding)
       {
         element: <OnboardingLayout />,
         children: [
           {
             path: "/",
-            element: <Onboarding />,
+            element: (
+              <PublicRoute restricted={true}>
+                <Onboarding />
+              </PublicRoute>
+            ),
           },
           {
             path: "/verify",
-            element: <EmailVerification />,
+            element: (
+              <PublicRoute>
+                <EmailVerification />
+              </PublicRoute>
+            ),
           },
           {
             path: "/register",
-            element: <Register />,
+            element: (
+              <PublicRoute restricted={true}>
+                <Register />
+              </PublicRoute>
+            ),
           },
         ],
       },
 
+      // Auth routes (restricted - redirect to dashboard if logged in)
       {
         path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "/create-website",
-        element: <CreateWebsite />,
-      },
-      {
-        path: "/create-website/templates",
-        element: <Templates />,
-      },
-      {
-        path: "/create-website/analytics",
-        element: <WebsiteAnalytics />,
-      },
-      {
-        path: "/social-scheduler",
-        element: <SocialScheduler />,
-      },
-      {
-        path: "/ads-manager",
-        element: <AdsManager />,
-      },
-      {
-        path: "/seo-tools",
-        element: <SEO />,
-      },
-      {
-        path: "/seo-tools/site-audit",
-        element: <SiteAudit />,
-      },
-      {
-        path: "/seo-tools/backlink-audit",
-        element: <BacklinkAudit />,
-      },
-         {
-        path: "/seo-tools/backlink-analytic",
-        element: <BacklinkAnalytic />,
-      },
-      {
-        path: "/seo-tools/domain-overview",
-        element: <DomainOverview />,
-      },
-      {
-        path: "/seo-tools/traffic-analytics",
-        element: <TrafficAnalytics />,
-      },
-      {
-        path: "/seo-tools/keyword-overview",
-        element: <KeywordOverview />,
-      },
-      {
-        path: "/email-campaigns/analytics",
-        element: <EmailCampaigns />,
-      },
-      {
-        path: "/email-campaigns/subscribers",
-        element: <EmailSubscribers />,
-      },
-      {
-        path: "/email-campaigns/templates",
-        element: <EmailTemplates />,
-      },
-      {
-        path: "/email-campaigns/campaigns",
-        element: <AllCampaigns />,
+        element: (
+          <PublicRoute restricted={true}>
+            <Login />
+          </PublicRoute>
+        ),
       },
       {
         element: <ForgotPassLayout />,
         children: [
           {
             path: "/forgot-password",
-            element: <ForgotPassword />,
+            element: (
+              <PublicRoute restricted={true}>
+                <ForgotPassword />
+              </PublicRoute>
+            ),
           },
           {
             path: "/enter-otp",
-            element: <ResetPassOTP />,
+            element: (
+              <PublicRoute restricted={true}>
+                <ResetPassOTP />
+              </PublicRoute>
+            ),
           },
           {
             path: "/change-password",
-            element: <ResetPassword />,
+            element: (
+              <PublicRoute restricted={true}>
+                <ResetPassword />
+              </PublicRoute>
+            ),
           },
         ],
+      },
+
+      // Protected routes (require authentication)
+      {
+        path: "/dashboard",
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/create-website",
+        element: (
+          <ProtectedRoute>
+            <CreateWebsite />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/create-website/templates",
+        element: (
+          <ProtectedRoute>
+            <Templates />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/create-website/analytics",
+        element: (
+          <ProtectedRoute>
+            <WebsiteAnalytics />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/social-scheduler",
+        element: (
+          <ProtectedRoute>
+            <SocialScheduler />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/ads-manager",
+        element: (
+          <ProtectedRoute>
+            <AdsManager />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/seo-tools",
+        element: (
+          <ProtectedRoute>
+            <SEO />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/seo-tools/site-audit",
+        element: (
+          <ProtectedRoute>
+            <SiteAudit />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/seo-tools/backlink-audit",
+        element: (
+          <ProtectedRoute>
+            <BacklinkAudit />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/seo-tools/backlink-analytic",
+        element: (
+          <ProtectedRoute>
+            <BacklinkAnalytic />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/seo-tools/domain-overview",
+        element: (
+          <ProtectedRoute>
+            <DomainOverview />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/seo-tools/traffic-analytics",
+        element: (
+          <ProtectedRoute>
+            <TrafficAnalytics />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/seo-tools/keyword-overview",
+        element: (
+          <ProtectedRoute>
+            <KeywordOverview />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/email-campaigns/analytics",
+        element: (
+          <ProtectedRoute>
+            <EmailCampaigns />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/email-campaigns/subscribers",
+        element: (
+          <ProtectedRoute>
+            <EmailSubscribers />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/email-campaigns/templates",
+        element: (
+          <ProtectedRoute>
+            <EmailTemplates />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/email-campaigns/campaigns",
+        element: (
+          <ProtectedRoute>
+            <AllCampaigns />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "*",
@@ -147,7 +251,11 @@ const router = createBrowserRouter([
 ]);
 
 const AppRoutes = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };
 
 export default AppRoutes;

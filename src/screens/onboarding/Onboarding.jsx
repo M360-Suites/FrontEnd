@@ -1,8 +1,41 @@
-import React from "react";
 import Button from "../../components/ui/Button";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { requestTrial } from "../../functions/authFunctions";
+import { useState } from "react";
+import { setCookie } from "../../utils/cookies";
 
 const Onboarding = () => {
+  const [email, setEmail] = useState(""); 
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate();
+
+  const handleRequest = async () => {
+    if (!email) {
+      setError("Please enter an email address");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(false);
+      const res = await requestTrial(email);
+      console.log(res);
+      
+      // Store email in cookie for verification page
+      setCookie('verificationEmail', email, 1); // Store for 1 day
+      
+      // Navigate to verification page
+      navigate("/verify");
+    } catch (error) {
+      console.log(error);
+      setError(error.message || "An error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <div className='mb-4'>
@@ -21,10 +54,19 @@ const Onboarding = () => {
         </p>
       </div>
 
+      {/* Display error if exists */}
+      {error && (
+        <div className='mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded'>
+          {error}
+        </div>
+      )}
+
       {/* Email signup form */}
       <div className='mt-8 w-full sm:w-[350px] md:w-[400px] lg:w-[450px] border border-gray-300 rounded-xl flex overflow-hidden transition-all duration-300'>
         <div className='flex-grow'>
           <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} 
             type='email'
             placeholder='Email'
             className='w-full h-full px-4 py-3 sm:py-3.5 md:py-4 outline-none text-sm md:text-base'
@@ -33,8 +75,10 @@ const Onboarding = () => {
         </div>
         <div>
           <Button
+            onClick={handleRequest}
+            disabled={loading} 
             className='bg-light-orange hover:bg-orange-600 transition-colors duration-300 h-full text-sm md:text-base px-3 md:px-6'
-            title={"Sign up"}
+            title={loading ? "Sending..." : "Sign Up"}
           />
         </div>
       </div>
@@ -43,7 +87,7 @@ const Onboarding = () => {
         <p className='text-gray-600'>
           Already have an account?{" "}
           <span className='font-bold'>
-            <Link to={"/verify"} className='hover:underline'>
+            <Link to={"/login"} className='hover:underline'>
               Login
             </Link>
           </span>

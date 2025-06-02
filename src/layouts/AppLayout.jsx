@@ -3,10 +3,11 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import OnBoardingHeader from "./OnBoardingHeader";
+import { useAuth } from "../context/UseAuth";
 
 const AppLayout = () => {
   const location = useLocation();
-  const isAuthenticated = false;
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     window.scrollTo(0, 0);

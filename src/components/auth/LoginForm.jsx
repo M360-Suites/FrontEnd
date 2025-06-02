@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { Google } from "../../assets/index";
 import Button from "../ui/Button";
+import { login } from "../../functions/authFunctions";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/UseAuth";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const { login: authLogin } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get the intended destination or default to dashboard
+  const from = location.state?.from?.pathname || '/dashboard';
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,12 +28,59 @@ const LoginForm = () => {
       ...prev,
       [name]: value,
     }));
+    // Clear error when user starts typing
+    if (error) setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login attempt with:", formData);
-    // login logic here
+    try {
+      setLoading(true);
+      setError("");
+      
+      const res = await login({
+        email: formData.email,
+        password: formData.password,
+      });
+      
+      console.log(res);
+      
+      // Handle different possible response structures
+      const authToken = res.data.accessToken
+      const userData = res.user || res.data?.user || { email: formData.email };
+
+      if (authToken) {
+        // Use AuthContext login method to set global state
+        authLogin(userData, authToken);
+        
+        // Navigate to intended destination
+        navigate(from, { replace: true });
+      } else {
+        setError("No authentication token received. Please try again.");
+      }
+    } catch (error) {
+      setError(error.response?.data?.message || "Login failed. Please try again.");
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      setLoading(true);
+      setError("");
+      
+      // Your Google auth logic here
+      const res = await googleAuth();
+      // Handle Google auth response similar to regular login
+      
+    } catch (error) {
+      setError("Google authentication failed. Please try again.");
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -29,7 +88,12 @@ const LoginForm = () => {
       <h1 className='text-3xl font-bold text-gray-900 mb-6'>
         Welcome Back!
       </h1>
-
+      {error && (
+        <div className='p-3 mb-4 border rounded border-red-400 bg-red-50 text-red-700'>
+          {error}
+        </div>
+      )}
+      
       {/* Email Input */}
       <div className='mb-4'>
         <label
@@ -40,7 +104,7 @@ const LoginForm = () => {
         </label>
         <input
           suggested='email'
-          autoComplete="on"
+          autoComplete='email'
           id='email'
           name='email'
           type='email'
@@ -49,6 +113,7 @@ const LoginForm = () => {
           placeholder='Enter your email'
           className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500'
           required
+          disabled={loading}
         />
       </div>
 
@@ -71,11 +136,13 @@ const LoginForm = () => {
             placeholder='Enter your password'
             className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500'
             required
+            disabled={loading}
           />
           <button
             type='button'
-            className='absolute right-3 top-1/2 -translate-y-1/2 text-gray-500'
+            className='absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700'
             onClick={() => setShowPassword(!showPassword)}
+            disabled={loading}
           >
             <Icon
               icon={showPassword ? "mdi:eye-off" : "mdi:eye"}
@@ -84,12 +151,12 @@ const LoginForm = () => {
           </button>
         </div>
         <div className='text-right mt-2'>
-          <a
-            href='/forgot-password'
+          <Link
+            to='/forgot-password'
             className='text-orange-500 text-sm font-medium hover:underline'
           >
             Forgot password?
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -97,8 +164,13 @@ const LoginForm = () => {
       <div className='mt-6'>
         <Button
           type='submit'
-          title='Login'
-          className='w-full bg-orange-500 text-white py-3 text-lg font-semibold rounded-xl hover:bg-orange-600 transition-all'
+          disabled={loading}
+          title={loading ? "Logging you in..." : "Login"}
+          className={`w-full py-3 text-lg font-semibold rounded-xl transition-all ${
+            loading 
+              ? 'bg-orange-400 cursor-not-allowed' 
+              : 'bg-orange-500 hover:bg-orange-600'
+          } text-white`}
         />
       </div>
 
@@ -112,11 +184,17 @@ const LoginForm = () => {
       {/* Google Login Button */}
       <button
         type='button'
-        className='w-full flex items-center justify-center border border-gray-300 py-3 rounded-xl hover:bg-gray-100 transition-all'
+        onClick={handleGoogleLogin}
+        disabled={loading}
+        className={`w-full flex items-center justify-center border border-gray-300 py-3 rounded-xl transition-all ${
+          loading 
+            ? 'bg-gray-100 cursor-not-allowed opacity-50' 
+            : 'hover:bg-gray-100'
+        }`}
       >
         <img src={Google} alt='Google Logo' className='w-6 h-6 mr-2' />
         <span className='text-gray-700 font-medium'>
-          Continue with Google
+          {loading ? 'Please wait...' : 'Continue with Google'}
         </span>
       </button>
 
@@ -124,12 +202,12 @@ const LoginForm = () => {
       <div className='text-center mt-6'>
         <p className='text-gray-600'>
           Don't have an account?{" "}
-          <a
-            href='/register'
+          <Link
+            to='/'
             className='text-orange-500 font-semibold hover:underline'
           >
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </form>

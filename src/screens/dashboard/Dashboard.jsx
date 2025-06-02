@@ -2,10 +2,14 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Analytics } from "../../assets";
 import { dashBoardCardsData } from "../../utils/data";
 import ExistingUserStats from "../../components/dashboard/ExistingUserStats";
+import { useAuth } from "../../context/UseAuth";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const isNewUser = false;
+
+  const { user } = useAuth();
+  console.log(user);
 
   return (
     <>
@@ -67,7 +71,7 @@ const Dashboard = () => {
           </div>
         </div>
       ) : (
-        <ExistingUserStats />
+        <ExistingUserStats user={user} />
       )}
     </>
   );
