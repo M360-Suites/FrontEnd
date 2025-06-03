@@ -47,7 +47,7 @@ const LoginForm = () => {
       
       // Handle different possible response structures
       const authToken = res.data.accessToken
-      const userData = res.user || res.data?.user || { email: formData.email };
+      const userData = res.data.user;
 
       if (authToken) {
         // Use AuthContext login method to set global state
@@ -59,8 +59,8 @@ const LoginForm = () => {
         setError("No authentication token received. Please try again.");
       }
     } catch (error) {
-      setError(error.response?.data?.message || "Login failed. Please try again.");
-      console.log(error);
+      setError(error.response.data.message);
+      // console.log(error.response.data.message);
     } finally {
       setLoading(false);
     }

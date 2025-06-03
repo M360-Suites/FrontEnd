@@ -1,34 +1,43 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { verifyCode } from "../../functions/authFunctions";
+import { getCookie, setCookie } from "../../utils/cookies";
 import Button from "../../components/ui/Button";
 import OTPinput from "../../components/ui/OTPinput";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 const ResetPassOTP = () => {
-  const [otp, setOtp] = useState("");
+  const [code, setCode] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
+  const [error, setError] = useState(false);
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const email = getCookie("resetEmail");
+    setEmail(email);
+    console.log("Retrieved reset mail", email);
+  }, []);
 
   const handleOtpComplete = (value) => {
-    setOtp(value);
+    setCode(value);
   };
 
-  const handleVerify = () => {
-    if (otp.length === 6) {
+  const handleVerify = async () => {
+    if (code.length === 6) {
       setIsVerifying(true);
-      // Here you would typically make an API call to verify the OTP
-      // For example:
-      // verifyOtp(otp).then(() => {
-      //   // Handle successful verification
-      // }).catch(error => {
-      //   // Handle error
-      // }).finally(() => {
-      //   setIsVerifying(false);
-      // });
+      try {
+        const res = await verifyCode(email, "forgetPassword", code);
+        // console.log(res.data.data);
+        const resetToken = res.data.data;
+        setCookie("resetToken", resetToken, 1);
+      } catch (error) {
+        console.log(error.response.data);
+        setError(error.response.data.message);
+      }
 
-      // For demo purposes:
       setTimeout(() => {
         setIsVerifying(false);
-        // Navigate or show success message
-      }, 1500);
+      }, 3000);
+      navigate("/change-password");
     }
   };
 
@@ -36,17 +45,32 @@ const ResetPassOTP = () => {
     // Implement resend code functionality here
     console.log("Resending code...");
   };
+
+  const maskEmail = (email) => {
+    if (!email) return "";
+    const [localPart, domain] = email.split("@");
+    const maskedLocal =
+      localPart.charAt(0) +
+      "*".repeat(Math.max(0, localPart.length - 2)) +
+      localPart.charAt(localPart.length - 1);
+    return `${maskedLocal}@${domain}`;
+  };
   return (
     <div className='max-w-md'>
       <div>
         <h1 className='text-3xl font-bold text-gray-800'>
-          Enter Code sent to your Email{" "}
+          Enter Code sent to {maskEmail(email)}
         </h1>
         <br />
         <small className='text-gray-500 text-base mt-2 block'>
           No credit card needed, No software installation.
         </small>
       </div>
+      {error && (
+        <div className='text-red-500 border-red-400 p-2 mt-3 border rounded-lg'>
+          <p>{error}</p>
+        </div>
+      )}
 
       <div className='space-y-10 mt-5'>
         <div>
@@ -58,7 +82,7 @@ const ResetPassOTP = () => {
         <div className='py-2'>
           <OTPinput
             onComplete={handleOtpComplete}
-            onChange={setOtp}
+            onChange={setCode}
             autoFocus={true}
             containerClassName='mb-4'
           />
@@ -76,15 +100,15 @@ const ResetPassOTP = () => {
         <div>
           <Button
             className={`bg-primary-orange w-full px-2 py-5 rounded-xl ${
-              otp.length !== 6 ? "opacity-70 cursor-not-allowed" : ""
+              code.length !== 6 ? "opacity-70 cursor-not-allowed" : ""
             }`}
             title={isVerifying ? "Verifying..." : "Recover Account"}
             onClick={handleVerify}
-            disabled={otp.length !== 6 || isVerifying}
+            disabled={code.length !== 6 || isVerifying}
           />
         </div>
       </div>
-      <Link to={'/change-password'}>Next </Link>
+      {/* <Link to={"/change-password"}>Next </Link> */}
     </div>
   );
 };

@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCookie } from "../../utils/cookies";
 import { Icon } from "@iconify/react";
 import Button from "../../components/ui/Button";
 import SuccessCard from "../../components/ui/SuccessCard";
+import { resetPassword } from "../../functions/authFunctions";
 
 const ResetPassword = () => {
-  const [password, setPassword] = useState("");
+  const [newPassword, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [token, setToken] = useState("");
+  const [error, setError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  useEffect(() => {
+    const token = getCookie("resetToken");
+    setToken(token);
+  }, []);
+
+  const handleRecover = async () => {
+    try {
+      const res = await resetPassword(newPassword, token);
+      console.log(res);
+    } catch (error) {
+      console.log(error.response.data.message);
+      setError(
+        error.response.data.message ||
+          "Token expired, please request again"
+      );
+    } finally {
+      // showSuccessMessage(true);
+    }
+  };
+
   const handleShowSuccessMessage = () => {
     setShowSuccessMessage(true);
     setTimeout(() => {
@@ -29,6 +53,12 @@ const ResetPassword = () => {
               Let's get you back in! Reset your password below.
             </p>
 
+            {error && (
+              <p className='text-red-700 text-center text-lg font-semibold'>
+                {error}
+              </p>
+            )}
+
             <div className='mt-6 space-y-6'>
               {/* Password Field */}
               <div>
@@ -40,7 +70,7 @@ const ResetPassword = () => {
                     type={showPassword ? "text" : "password"}
                     className='w-full px-4 py-3 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-light-orange focus:border-light-orange focus:outline-none transition-all'
                     placeholder='************'
-                    value={password}
+                    value={newPassword}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <button
@@ -91,6 +121,7 @@ const ResetPassword = () => {
 
             {/* Submit Button */}
             <Button
+              onClick={handleRecover}
               className={
                 "mt-8 w-full bg-light-orange hover:bg-light-orange text-white font-medium py-3 md:py-6 rounded-lg transition duration-300 text-base md:text-lg"
               }
@@ -98,10 +129,10 @@ const ResetPassword = () => {
             />
           </div>
         </div>
-        <button onClick={handleShowSuccessMessage}>next</button>
+        {/* <button onClick={handleShowSuccessMessage}>next</button> */}
       </div>
 
-      {showSuccessMessage && <SuccessCard />}
+      {/* {showSuccessMessage && <SuccessCard />} */}
     </>
   );
 };

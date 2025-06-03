@@ -72,7 +72,7 @@ const ExistingUserStats = ({ user }) => {
     if (daysLeft === 0) return 'border-red-500 bg-red-50';
     if (daysLeft <= 3) return 'border-orange-500 bg-orange-50';
     if (daysLeft <= 7) return 'border-yellow-500 bg-yellow-50';
-    return 'border-primary-orange bg-light-orange/30';
+    return 'border-light-orange/20 bg-light-orange/30';
   };
 
   const getProgressBarColor = (daysLeft, percentage) => {

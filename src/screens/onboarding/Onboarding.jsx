@@ -30,7 +30,7 @@ const Onboarding = () => {
       navigate("/verify");
     } catch (error) {
       console.log(error);
-      setError(error.message || "An error occurred");
+      setError(error.response.data.message);
     } finally {
       setLoading(false);
     }

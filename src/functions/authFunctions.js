@@ -139,10 +139,11 @@ export const verifyCode = async (email, reason, code) => {
   }
 };
 
-export const resetPassword = async (newPassword) => {
+export const resetPassword = async (newPassword, token) => {
   try {
     const response = await authAxios.post(`/auth/reset-password`, {
       newPassword,
+      token
     });
     return response;
   } catch (error) {
