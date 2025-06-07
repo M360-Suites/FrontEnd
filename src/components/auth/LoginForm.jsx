@@ -182,7 +182,7 @@ const LoginForm = () => {
       </div>
 
       {/* Google Login Button */}
-      <button
+      {/* <button
         type='button'
         onClick={handleGoogleLogin}
         disabled={loading}
@@ -196,7 +196,7 @@ const LoginForm = () => {
         <span className='text-gray-700 font-medium'>
           {loading ? 'Please wait...' : 'Continue with Google'}
         </span>
-      </button>
+      </button> */}
 
       {/* Sign up link */}
       <div className='text-center mt-6'>

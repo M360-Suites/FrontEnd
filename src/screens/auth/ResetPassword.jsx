@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getCookie } from "../../utils/cookies";
+import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import Button from "../../components/ui/Button";
 import SuccessCard from "../../components/ui/SuccessCard";
@@ -13,6 +14,7 @@ const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = getCookie("resetToken");
@@ -20,17 +22,36 @@ const ResetPassword = () => {
   }, []);
 
   const handleRecover = async () => {
+    // Clear any previous errors
+    setError(false);
+    
+    // Validate passwords match
+    if (newPassword !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    
+    // Validate password is not empty
+    if (!newPassword.trim()) {
+      setError("Password cannot be empty");
+      return;
+    }
+    
     try {
       const res = await resetPassword(newPassword, token);
       console.log(res);
+      setShowSuccessMessage(true);
+      
+      // Delay navigation to allow success message to be seen
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000); // 3 second delay
     } catch (error) {
       console.log(error.response.data.message);
       setError(
         error.response.data.message ||
           "Token expired, please request again"
       );
-    } finally {
-      // showSuccessMessage(true);
     }
   };
 
@@ -129,10 +150,9 @@ const ResetPassword = () => {
             />
           </div>
         </div>
-        {/* <button onClick={handleShowSuccessMessage}>next</button> */}
       </div>
 
-      {/* {showSuccessMessage && <SuccessCard />} */}
+      {showSuccessMessage && <SuccessCard />}
     </>
   );
 };

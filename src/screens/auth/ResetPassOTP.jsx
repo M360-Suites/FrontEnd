@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { verifyCode } from "../../functions/authFunctions";
+import { requestOTP, verifyCode } from "../../functions/authFunctions";
 import { getCookie, setCookie } from "../../utils/cookies";
 import Button from "../../components/ui/Button";
 import OTPinput from "../../components/ui/OTPinput";
@@ -8,6 +8,7 @@ const ResetPassOTP = () => {
   const [code, setCode] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
   const [error, setError] = useState(false);
+  const [status, setStatus] = useState(false);
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
@@ -41,9 +42,14 @@ const ResetPassOTP = () => {
     }
   };
 
-  const handleResendCode = () => {
-    // Implement resend code functionality here
-    console.log("Resending code...");
+  const handleResendCode = async () => {
+    try {
+      const res = await requestOTP(email, "forgetPassword");
+      // console.log(res)
+      setStatus(res.data.message);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
   };
 
   const maskEmail = (email) => {
@@ -66,12 +72,16 @@ const ResetPassOTP = () => {
           No credit card needed, No software installation.
         </small>
       </div>
+      {status && (
+        <div className='text-green-700 border border-green-500 rounded-lg mt-5 p-4'>
+          <p>{status}</p>
+        </div>
+      )}
       {error && (
         <div className='text-red-500 border-red-400 p-2 mt-3 border rounded-lg'>
           <p>{error}</p>
         </div>
       )}
-
       <div className='space-y-10 mt-5'>
         <div>
           <small className='text-gray-500 text-sm font-bold'>
@@ -90,6 +100,7 @@ const ResetPassOTP = () => {
           <div className='flex justify-center mt-4'>
             <button
               onClick={handleResendCode}
+              disabled={isVerifying}
               className='text-primary-orange text-sm hover:underline'
             >
               Didn't receive a code? Resend
@@ -108,7 +119,6 @@ const ResetPassOTP = () => {
           />
         </div>
       </div>
-      {/* <Link to={"/change-password"}>Next </Link> */}
     </div>
   );
 };
