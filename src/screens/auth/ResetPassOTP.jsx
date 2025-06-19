@@ -15,7 +15,7 @@ const ResetPassOTP = () => {
   useEffect(() => {
     const email = getCookie("resetEmail");
     setEmail(email);
-    console.log("Retrieved reset mail", email);
+    // console.log("Retrieved reset mail", email);
   }, []);
 
   const handleOtpComplete = (value) => {

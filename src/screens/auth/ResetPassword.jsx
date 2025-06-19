@@ -39,7 +39,7 @@ const ResetPassword = () => {
     
     try {
       const res = await resetPassword(newPassword, token);
-      console.log(res);
+      // console.log(res);
       setShowSuccessMessage(true);
       
       // Delay navigation to allow success message to be seen
