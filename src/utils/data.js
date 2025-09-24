@@ -49,7 +49,7 @@ export const sideBarData = [
     dropdownItems: [
       { name: "Website", path: "/create-website" },
       { name: "Templates", path: "/create-website/templates" },
-      { name: "Website Analytics", path: "/create-website/analytics" },
+      // { name: "Website Analytics", path: "/create-website/analytics" },
     ],
     icon: "carbon:create-link",
   },

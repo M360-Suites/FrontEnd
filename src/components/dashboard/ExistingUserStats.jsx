@@ -12,7 +12,7 @@ const ExistingUserStats = ({ user }) => {
     if (!user.trialEnd || !user.trialStart) {
       return {
         daysLeft: 0,
-        totalDays: 30,
+        totalDays: 90,
         progressPercentage: 100,
         isExpired: true,
         daysUsed: 30,

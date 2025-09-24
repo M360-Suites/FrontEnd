@@ -30,6 +30,7 @@ import BacklinkAnalytic from "../components/dashboard/seo/BacklinkAnalytic";
 import ProtectedRoute from '../routes/ProtectedRoute';
 import PublicRoute from '../routes/PublicRoute';
 import { AuthProvider } from '../context/UseAuth';
+import Callback from "../components/auth/Callback";
 
 const router = createBrowserRouter([
   {
@@ -239,6 +240,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <AllCampaigns />
+          </ProtectedRoute>
+        ),
+      },
+       {
+        path: "/auth/callback",
+        element: (
+          <ProtectedRoute>
+            <Callback />
           </ProtectedRoute>
         ),
       },

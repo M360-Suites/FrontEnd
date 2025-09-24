@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { userProfile } from "../../utils/dummyData";
 
-const ProfileCard = ({ toggleOpenProfile }) => {
+const ProfileCard = ({ toggleOpenProfile, user }) => {
   return (
     <div className='card absolute right-0 top-12 bg-white border border-t-transparent rounded-lg p-4 w-[400px] h-[630px] shadow-lg z-50'>
       <div className='flex items-center space-x-4 border-b border-gray-200 pb-8'>
@@ -16,13 +16,13 @@ const ProfileCard = ({ toggleOpenProfile }) => {
         <div className='flex flex-col space-y-2 border-gray-200'>
           <div>
             <span className='font-bold text-gray-800'>
-              {userProfile.name}
+              {user.user.companyName}
             </span>
           </div>
           <div>
-            <span className='font-light text-gray-500'>
+            {/* <span className='font-light text-gray-500'>
               ID: {userProfile.id}
-            </span>
+            </span> */}
           </div>
         </div>
         <div className='flex flex-1 justify-end'>
@@ -39,10 +39,10 @@ const ProfileCard = ({ toggleOpenProfile }) => {
           <Icon icon={"oui:email"} className='text-xl text-gray-500' />
           <span className='text-gray-500 text-sm'>Email</span>
         </div>
-        <p className='text-gray-700 text-sm pl-8'>{userProfile.email}</p>
+        <p className='text-gray-800 pl-8'>{user.user.companyEmail}</p>
       </div>
 
-      <div className='flex border-b border-gray-200 py-4 gap-14 mt-6 text-gray-500'>
+      {/* <div className='flex border-b border-gray-200 py-4 gap-14 mt-6 text-gray-500'>
         <div className='flex flex-col'>
           <div className='flex items-center space-x-2 mb-2'>
             <Icon icon={"ph:phone"} className='text-xl text-gray-500' />
@@ -63,7 +63,7 @@ const ProfileCard = ({ toggleOpenProfile }) => {
             {userProfile.address}
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Additional sections */}
       <div className='mt-6'>
