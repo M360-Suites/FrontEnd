@@ -144,7 +144,7 @@ const ResetPassword = () => {
             <Button
               onClick={handleRecover}
               className={
-                "mt-8 w-full bg-light-orange hover:bg-light-orange text-white font-medium py-3 md:py-6 rounded-lg transition duration-300 text-base md:text-lg"
+                "mt-8 w-full bg-light-orange hover:bg-orange-600 shadow-md shadow-orange-500/20 text-white font-medium py-3.5 md:py-4 rounded-xl transition duration-300 text-base md:text-lg"
               }
               title={"Recover Account"}
             />

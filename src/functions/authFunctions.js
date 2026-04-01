@@ -69,18 +69,20 @@ export const isAuthenticated = () => {
 };
 
 export const signUp = async ({
-  companyName,
+  name,
+  org,
   email,
   token,
-  companyUrl,
+  url,
   password,
 }) => {
   try {
     const response = await authAxios.post(`/auth/signup`, {
-      name: companyName,
+      name,
+      org,
       email,
       token,
-      url: companyUrl,
+      url,
       password,
     });
 
@@ -107,7 +109,7 @@ export const login = async ({ email, password }) => {
 
 export const googleAuth = async () => {
   try {
-    const res = await authAxios.get(`/auth/signup`);
+    const res = await authAxios.get(`/auth/google`);
     return res;
   } catch (error) {
     throw error;

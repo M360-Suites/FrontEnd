@@ -56,22 +56,22 @@ const ForgotPassword = () => {
       )}
 
       {/* Email signup form */}
-      <div className='mt-8 w-full sm:w-[350px] md:w-[400px] lg:w-[450px] border border-gray-300 rounded-xl flex overflow-hidden transition-all duration-300'>
-        <div className='flex-grow'>
+      <div className='mt-8 w-full max-w-md flex flex-col sm:flex-row gap-4 sm:gap-0 sm:border sm:border-gray-300 sm:rounded-xl sm:overflow-hidden transition-all duration-300'>
+        <div className='flex-grow border border-gray-300 sm:border-none rounded-xl sm:rounded-none overflow-hidden'>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type='email'
-            placeholder='Email'
-            className='w-full h-full px-4 py-3 sm:py-3.5 md:py-4 outline-none text-sm md:text-base'
+            placeholder='Enter your email address'
+            className='w-full h-full px-4 py-3.5 sm:py-4 outline-none text-gray-700 text-sm md:text-base'
             required
           />
         </div>
-        <div>
+        <div className='w-full sm:w-auto'>
           <Button
             onClick={handleRequest}
-            className='bg-light-orange hover:bg-orange-600 transition-colors duration-300 h-full text-sm md:text-base px-3 md:px-6'
-            title={loading ? "Getting Account..." : "Get Account"}
+            className='w-full sm:w-auto bg-light-orange hover:bg-orange-600 text-white transition-colors duration-300 py-3.5 sm:py-0 sm:h-full text-sm md:text-base px-6 rounded-xl sm:rounded-none font-medium shadow-md sm:shadow-none shadow-orange-500/20'
+            title={loading ? "Sending..." : "Reset Password"}
           />
         </div>
       </div>
