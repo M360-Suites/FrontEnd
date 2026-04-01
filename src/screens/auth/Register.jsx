@@ -8,12 +8,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
 	const [formData, setFormData] = useState({
+		fullName: "",
 		companyName: "",
 		email: "",
 		companyUrl: "",
 		password: "",
 		confirmPassword: "",
 	});
+	const [isOrg, setIsOrg] = useState(true);
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] =
 		useState(false);
@@ -38,6 +40,24 @@ const Register = () => {
 		}
 	}, [navigate]);
 
+	const handleToggleOrg = (isOrgValue) => {
+		setIsOrg(isOrgValue);
+		setFormData((prev) => ({
+			...prev,
+			fullName: isOrgValue ? "" : prev.fullName,
+			companyName: !isOrgValue ? "" : prev.companyName,
+			companyUrl: !isOrgValue ? "" : prev.companyUrl,
+		}));
+		// Clear specific errors related to organization/personal when switching
+		setErrors((prev) => {
+			const newErrors = { ...prev };
+			delete newErrors.fullName;
+			delete newErrors.companyName;
+			delete newErrors.companyUrl;
+			return newErrors;
+		});
+	};
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({
@@ -57,18 +77,23 @@ const Register = () => {
 	const validateForm = () => {
 		const newErrors = {};
 
-		if (!formData.companyName.trim()) {
-			newErrors.companyName = "Company name is required";
+		if (isOrg) {
+			if (!formData.companyName.trim()) {
+				newErrors.companyName = "Company name is required";
+			}
+			if (!formData.companyUrl.trim()) {
+				newErrors.companyUrl = "Company URL is required";
+			}
+		} else {
+			if (!formData.fullName?.trim()) {
+				newErrors.fullName = "Full name is required";
+			}
 		}
 
 		if (!formData.email.trim()) {
 			newErrors.email = "Email is required";
 		} else if (!/\S+@\S+\.\S+/.test(formData.email)) {
 			newErrors.email = "Please enter a valid email";
-		}
-
-		if (!formData.companyUrl.trim()) {
-			newErrors.companyUrl = "Company URL is required";
 		}
 
 		if (!formData.password) {
@@ -108,10 +133,11 @@ const Register = () => {
 
 		try {
 			const res = await signUp({
-				companyName: formData.companyName,
+				name: isOrg ? formData.companyName : formData.fullName,
+				org: isOrg,
 				email: formData.email,
 				token: verificationToken,
-				companyUrl: formData.companyUrl,
+				url: isOrg ? formData.companyUrl : undefined,
 				password: formData.password,
 			});
 
@@ -165,11 +191,12 @@ const Register = () => {
 				<div className='mb-8'>
 					<h1 className='text-4xl lg:text-5xl font-bold text-blue-900 mb-4'>
 						Create an <br />
-						organization account
+						{isOrg ? "organization" : "personal"} account
 					</h1>
 					<p className='text-gray-600 text-lg'>
-						Organization account allow you to <br />
-						collaborate with your team on a project
+						{isOrg 
+							? "Organization account allows you to collaborate with your team on a project"
+							: "Personal account allows you to manage your own projects and tasks"}
 					</p>
 				</div>
 				<div className='relative w-full aspect-square max-w-lg'>
@@ -198,72 +225,130 @@ const Register = () => {
 						</div>
 					)}
 
-					{/* Company Name */}
-					<div>
-						<label
-							htmlFor='companyName'
-							className='block text-sm font-semibold text-gray-700 mb-2'
+					{/* Account Type Toggle */}
+					<div className="flex bg-gray-100 p-1 rounded-xl mb-6">
+						<button
+							type="button"
+							onClick={() => handleToggleOrg(true)}
+							className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all ${isOrg ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
 						>
-							Company's name
-						</label>
-						<div
-							className={`w-full border rounded-2xl overflow-hidden transition-all duration-300 ${
-								errors.companyName
-									? "border-red-300"
-									: "border-gray-200"
-							}`}
+							Organization
+						</button>
+						<button
+							type="button"
+							onClick={() => handleToggleOrg(false)}
+							className={`flex-1 py-2 text-sm font-semibold rounded-lg transition-all ${!isOrg ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
 						>
-							<input
-								id='companyName'
-								name='companyName'
-								type='text'
-								placeholder='Enter your company name'
-								className='w-full px-4 py-3.5 outline-none text-gray-700 placeholder-gray-400'
-								required
-								value={formData.companyName}
-								onChange={handleChange}
-							/>
-						</div>
-						{errors.companyName && (
-							<p className='text-xs text-red-500 mt-1'>
-								{errors.companyName}
-							</p>
-						)}
+							Personal
+						</button>
 					</div>
 
-					{/* Company URL */}
-					<div>
-						<label
-							htmlFor='companyUrl'
-							className='block text-sm font-semibold text-gray-700 mb-2'
-						>
-							Company's URL
-						</label>
-						<div
-							className={`w-full border rounded-2xl overflow-hidden transition-all duration-300 ${
-								errors.companyUrl
-									? "border-red-300"
-									: "border-gray-200"
-							}`}
-						>
-							<input
-								id='companyUrl'
-								autoComplete='off'
-								name='companyUrl'
-								type='text'
-								placeholder='www.website.com'
-								className='w-full px-4 py-3.5 outline-none text-gray-700 placeholder-gray-400'
-								required
-								value={formData.companyUrl}
-								onChange={handleChange}
-							/>
-						</div>
-						{errors.companyUrl && (
-							<p className='text-xs text-red-500 mt-1'>
-								{errors.companyUrl}
-							</p>
-						)}
-					</div>
+					{/* Dynamic Fields */}
+					{isOrg ? (
+						<>
+							{/* Company Name */}
+							<div>
+								<label
+									htmlFor='companyName'
+									className='block text-sm font-semibold text-gray-700 mb-2'
+								>
+									Company's name
+								</label>
+								<div
+									className={`w-full border rounded-2xl overflow-hidden transition-all duration-300 ${
+										errors.companyName
+											? "border-red-300"
+											: "border-gray-200"
+									}`}
+								>
+									<input
+										id='companyName'
+										name='companyName'
+										type='text'
+										placeholder='Enter your company name'
+										className='w-full px-4 py-3.5 outline-none text-gray-700 placeholder-gray-400'
+										required={isOrg}
+										value={formData.companyName}
+										onChange={handleChange}
+									/>
+								</div>
+								{errors.companyName && (
+									<p className='text-xs text-red-500 mt-1'>
+										{errors.companyName}
+									</p>
+								)}
+							</div>
+
+							{/* Company URL */}
+							<div>
+								<label
+									htmlFor='companyUrl'
+									className='block text-sm font-semibold text-gray-700 mb-2'
+								>
+									Company's URL
+								</label>
+								<div
+									className={`w-full border rounded-2xl overflow-hidden transition-all duration-300 ${
+										errors.companyUrl
+											? "border-red-300"
+											: "border-gray-200"
+									}`}
+								>
+									<input
+										id='companyUrl'
+										autoComplete='off'
+										name='companyUrl'
+										type='text'
+										placeholder='www.website.com'
+										className='w-full px-4 py-3.5 outline-none text-gray-700 placeholder-gray-400'
+										required={isOrg}
+										value={formData.companyUrl}
+										onChange={handleChange}
+									/>
+								</div>
+								{errors.companyUrl && (
+									<p className='text-xs text-red-500 mt-1'>
+										{errors.companyUrl}
+									</p>
+								)}
+							</div>
+						</>
+					) : (
+						<>
+							{/* Full Name */}
+							<div>
+								<label
+									htmlFor='fullName'
+									className='block text-sm font-semibold text-gray-700 mb-2'
+								>
+									Full Name
+								</label>
+								<div
+									className={`w-full border rounded-2xl overflow-hidden transition-all duration-300 ${
+										errors.fullName
+											? "border-red-300"
+											: "border-gray-200"
+									}`}
+								>
+									<input
+										id='fullName'
+										name='fullName'
+										type='text'
+										placeholder='Enter your full name'
+										className='w-full px-4 py-3.5 outline-none text-gray-700 placeholder-gray-400'
+										required={!isOrg}
+										value={formData.fullName}
+										onChange={handleChange}
+									/>
+								</div>
+								{errors.fullName && (
+									<p className='text-xs text-red-500 mt-1'>
+										{errors.fullName}
+									</p>
+								)}
+							</div>
+						</>
+					)}
 
 					{/* Email - Keeping it hidden or present? The screenshot doesn't explicitly show Email, just Company, URL, Password. 
                But the logic requires Email. I will keep it but maybe it's populated from onboarding?
