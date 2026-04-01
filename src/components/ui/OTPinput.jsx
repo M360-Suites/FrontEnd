@@ -127,7 +127,7 @@ const OTPinput = ({
   };
 
   return (
-    <div className={`flex justify-center space-x-3 ${containerClassName}`}>
+    <div className={`flex justify-center space-x-2 sm:space-x-3 ${containerClassName}`}>
       {otp.map((digit, index) => (
         <input
           key={index}
@@ -139,7 +139,7 @@ const OTPinput = ({
           onChange={(e) => handleChange(e, index)}
           onKeyDown={(e) => handleKeyDown(e, index)}
           onPaste={(e) => handlePaste(e, index)}
-          className={`w-12 h-12 text-center text-xl font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-orange focus:border-transparent ${inputClassName}`}
+          className={`w-10 h-10 sm:w-12 sm:h-12 text-center text-lg sm:text-xl font-bold border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-orange focus:border-transparent transition-all ${inputClassName}`}
           aria-label={`Digit ${index + 1} of OTP`}
         />
       ))}
