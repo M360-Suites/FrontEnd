@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { mainLogo } from "../assets/index";
+import mainLogo from "/dm360.png";
 import { useAuth } from "../context/UseAuth";
 import { Icon } from "@iconify/react";
 import NotificationCard from "../components/ui/NotificationCard";
@@ -32,7 +32,7 @@ const Header = () => {
 		<div className='sticky top-0 z-50 bg-white px-5 py-2 border-b border-gray-200 min-w-full'>
 			<div className='flex justify-between items-center'>
 				{/* Logo */}
-				<div className='flex-shrink-0 h-[35px] w-[120px] md:w-[150px] py-2'>
+				<div className='flex-shrink-0 h-[55px] w-[120px] md:w-[150px] py-2'>
 					<img
 						className='h-full object-cover'
 						src={mainLogo}

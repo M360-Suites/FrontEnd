@@ -184,7 +184,7 @@ const SideBar = () => {
           </ul>
 
           {/* Logout positioned closer to the menu items */}
-          <div className='px-2 mt-8 border-t border-gray-200 pt-4'>
+          {/* <div className='px-2 mt-8 border-t border-gray-200 pt-4'>
             <Link
               to='/logout'
               className='flex items-center py-3 px-4 rounded-lg text-gray-700 hover:bg-gray-100'
@@ -196,7 +196,7 @@ const SideBar = () => {
               />
               <span className='ml-3'>Logout</span>
             </Link>
-          </div>
+          </div> */}
         </div>
       </>
     );
@@ -353,7 +353,7 @@ const SideBar = () => {
         })}
 
         {/* Logout positioned closer to the menu items */}
-        <li className='mt-8 pt-4 border-t border-gray-200'>
+        {/* <li className='mt-8 pt-4 border-t border-gray-200'>
           <Link
             to='/logout'
             className={`
@@ -364,7 +364,7 @@ const SideBar = () => {
             <Icon icon='carbon:logout' className='text-xl text-gray-500' />
             {!collapsed && <span className='ml-3'>Logout</span>}
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

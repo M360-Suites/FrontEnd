@@ -13,6 +13,9 @@ import setUpMail from "./images/setup-mail.png";
 import importContact from "./images/import-contact.png";
 import createCampaign from "./images/create-campaign.png";
 import premium from "./images/premium.png";
+import crr from "./crr.png";
+import fr from "./fr.png";
+import nuth from "./nuth.png";
 // icons
 import e1 from "./icons/e1.png";
 import e2 from "./icons/e2.png";
@@ -52,8 +55,34 @@ import dov from "./images/dov.png";
 import vector from "./vectorWeb.png";
 import veeTwo from "./veekTwo.png";
 
+import fb from "./icons/fb.png";
+import ig from "./icons/ig.png";
+import ga from "./icons/ga.png";
+import x from "./icons/x.png";
+import meta from "./icons/meta.png";
+import yt from "./icons/yt.png";
+import li from "./icons/li.png";
+import tt from "./icons/tt.png";
+import ss from "./icons/ss.png";
+import s1 from "./icons/s1.png";
+import s2 from "./icons/s2.png";
+
 export {
 	e1,
+	nuth,
+	fr,
+	ss,
+	s2,
+	s1,
+	fb,
+	ig,
+	ga,
+	x,
+	meta,
+	yt,
+	li,
+	tt,
+	crr,
 	veeTwo,
 	domain,
 	dov,

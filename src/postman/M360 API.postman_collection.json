@@ -1,0 +1,1818 @@
+{
+  "info": {
+    "_postman_id": "0f80c0f4-eebd-42a7-919c-0d7823569673",
+    "name": "M360 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "34140950",
+    "_collection_link": "https://go.postman.co/collection/45433827-0f80c0f4-eebd-42a7-919c-0d7823569673?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "1. Request Trial",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"kolawoleakintayok@gmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/auth/trial",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "trial"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Verify Code",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"kolawoleakintayok@gmail.com\",\n    \"reason\": \"trial\",\n    \"code\": \"953249\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/auth/verify-code",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "verify-code"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Kolawole M. Akintayo\",\n    \"email\": \"kolawoleakintayok@gmail.com\",\n    // \"url\": \"https://kolawole-akintayo.vercel.app\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIiLCJlbWFpbCI6ImtvbGF3b2xlYWtpbnRheW9rQGdtYWlsLmNvbSIsImVtYWlsVmVyaWZpZWQiOnRydWUsImlhdCI6MTc2OTM1NzA4NSwiZXhwIjoxODAwODkzMDg1fQ.A2AagcMxkbxUK1qYVuLK0_z6pXhnuwa8D4HgL_Dxtus\",\n    \"password\": \"Kolawole20#\",\n    \"org\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/auth/signup",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Sign In",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"kolawolesax@gmail.com\",\n    \"password\": \"Kolawole20#\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/auth/signin",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "signin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. Google Sign in",
+          "request": {
+            "auth": {
+              "type": "inherit"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/auth/google",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "google"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Request Code",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"kolawoleakintayok@gmail.com\",\n    \"reason\": \"forgetPassword\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Live baseUrl}}/auth/sendCode",
+              "host": [
+                "{{Live baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "sendCode"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"newPassword\": \"Kolawole1234!\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtvbGF3b2xlYWtpbnRheW9rQGdtYWlsLmNvbSIsImVtYWlsVmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE3NDU5MjI1ODcsImV4cCI6MTc0NTkyMzE4N30.TA3MWLvn2RUdqkPXYJpMVL5QeKO1A2cl4IwrY2BG260\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Live baseUrl}}/auth/reset-password",
+              "host": [
+                "{{Live baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Media",
+      "item": [
+        {
+          "name": "Upload Media",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "x-organization-id",
+                "value": "6936724cbf7d502c87f794ce",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "files",
+                  "type": "file",
+                  "src": "postman-cloud:///1f079319-fa11-4da0-9e6e-3ec4f1449be7"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/media/",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "media",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Media",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cache-Control",
+                "value": "no-cache",
+                "type": "text"
+              },
+              {
+                "key": "Postman-Token",
+                "value": "<calculated when request is sent>",
+                "type": "text"
+              },
+              {
+                "key": "Content-Length",
+                "value": "0",
+                "type": "text"
+              },
+              {
+                "key": "Host",
+                "value": "<calculated when request is sent>",
+                "type": "text"
+              },
+              {
+                "key": "User-Agent",
+                "value": "PostmanRuntime/7.39.1",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "gzip, deflate, br",
+                "type": "text"
+              },
+              {
+                "key": "Connection",
+                "value": "keep-alive",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "type": "text"
+              },
+              {
+                "key": "x-organization-id",
+                "value": "6936724cbf7d502c87f794ce",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{Local baseUrl}}/media/",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "media",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Media By ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cache-Control",
+                "value": "no-cache",
+                "type": "text"
+              },
+              {
+                "key": "Postman-Token",
+                "value": "<calculated when request is sent>",
+                "type": "text"
+              },
+              {
+                "key": "Content-Length",
+                "value": "0",
+                "type": "text"
+              },
+              {
+                "key": "Host",
+                "value": "<calculated when request is sent>",
+                "type": "text"
+              },
+              {
+                "key": "User-Agent",
+                "value": "PostmanRuntime/7.39.1",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "gzip, deflate, br",
+                "type": "text"
+              },
+              {
+                "key": "Connection",
+                "value": "keep-alive",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/home/kholly/Pictures/cent.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/media/694a382d15549dcdab32e077",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "media",
+                "694a382d15549dcdab32e077"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Website Builder",
+      "item": [
+        {
+          "name": "Website",
+          "item": [
+            {
+              "name": "Create a Website",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-organization-id",
+                    "value": "6936724cbf7d502c87f794ce",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Kol's Concept site\",\n    \"url\": \"www.kolconcepts.com\",\n    \"description\": \"My new Website...\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Local baseUrl}}/website/",
+                  "host": [
+                    "{{Local baseUrl}}"
+                  ],
+                  "path": [
+                    "website",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get a Website",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Kol's Concept web\",\n    \"url\": \"www.kolconcepts.com\",\n    \"description\": \"My new Website...\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Live baseUrl}}/website/6810aa8d79b0111c6216049f",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "website",
+                    "6810aa8d79b0111c6216049f"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Website",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"updates\": {\n    \"name\": \"Kol's Concept webinar\",\n    \"url\": \"www.kolconceptsad.com\",\n    \"description\": \"My newa Website...\"\n}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Live baseUrl}}/website/6810931d61a42293c6d21586",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "website",
+                    "6810931d61a42293c6d21586"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Website",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{Live baseUrl}}/website/6810931d61a42293c6d21586",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "website",
+                    "6810931d61a42293c6d21586"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Pages",
+          "item": [
+            {
+              "name": "Get All Pages",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{Live baseUrl}}/6810931d61a42293c6d21586/pages?page=1&limit=10",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "6810931d61a42293c6d21586",
+                    "pages"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Add Page",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"About\",\n    \"content\": \"New page rtwge\",\n    \"status\": \"draft\",\n    \"websiteId\": \"6810931d61a42293c6d21586\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Live baseUrl}}/page/",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "page",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Page",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"updates\": {\n    \"title\": \"New Homad\",\n    \"content\": \"New page homad dfhfhfgf\",\n    \"status\": \"draft\"\n}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Live baseUrl}}/page/6810951c6bbb9059e6c299d6",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "page",
+                    "6810951c6bbb9059e6c299d6"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Fetch Page",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"New Home\",\n    \"content\": \"New page dfhfhfgf\",\n    \"status\": \"draft\",\n    \"websiteId\": \"680bac036852c37f34074701\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Live baseUrl}}/page/6810951c6bbb9059e6c299d6",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "page",
+                    "6810951c6bbb9059e6c299d6"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Publish Page",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{Live baseUrl}}/page/6810ab3a79b0111c621604b1/publish",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "page",
+                    "6810ab3a79b0111c621604b1",
+                    "publish"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Page",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{Live baseUrl}}/page/6810ab3a79b0111c621604b1",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "page",
+                    "6810ab3a79b0111c621604b1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Email Automation",
+      "item": [
+        {
+          "name": "Campaign",
+          "item": [
+            {
+              "name": "Fetch all Campaigns",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-org-id",
+                    "value": "6936724cbf7d502c87f794ce",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{Local baseUrl}}/campaigns/",
+                  "host": [
+                    "{{Local baseUrl}}"
+                  ],
+                  "path": [
+                    "campaigns",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Campaign Dashboard",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-org-id",
+                    "value": "6936724cbf7d502c87f794ce",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{Local baseUrl}}/campaigns/dashboard",
+                  "host": [
+                    "{{Local baseUrl}}"
+                  ],
+                  "path": [
+                    "campaigns",
+                    "dashboard"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Campaign",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-org-id",
+                    "value": "6936724cbf7d502c87f794ce",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"type\": \"oneTime\", //oneTime or drip\n    \"name\": \"New Campaign\",\n    \"subject\": \"For my people of God\",\n    \"from\": \"testinganytime110@gmail.com\",\n    \"recipients\": [\"68429ad4dc074d1d8468d273\"],// \"683dec0d607297adeadfa9ce\", \"68429ad4dc074d1d8468d273\"], // 683dec0d607297adeadfa9cf\n    \"contents\": [\"Give your Life to Jesus today. Tomorrow might be too late!!!.....\"],\n    \"links\": [\"www.kolawole-akintayo.vercel.app\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Local baseUrl}}/campaigns/",
+                  "host": [
+                    "{{Local baseUrl}}"
+                  ],
+                  "path": [
+                    "campaigns",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Campaigns",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"ids\": [\"682bcba2b289c36cf627d483\"] // Array of campaigns ids\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:6000/api/campaigns/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "6000",
+                  "path": [
+                    "api",
+                    "campaigns",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Subscribers",
+          "item": [
+            {
+              "name": "Fetch User's Subscribers",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:6000/api/subscribers",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "6000",
+                  "path": [
+                    "api",
+                    "subscribers"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Add Subscribers",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "/home/kholly/Documents/testEmails.txt",
+                      "disabled": true
+                    },
+                    {
+                      "key": "emails",
+                      "value": "testinganytime110@gmail.com",
+                      "type": "text"
+                    },
+                    {
+                      "key": "emails",
+                      "value": "kakintayo@skopoos.com",
+                      "type": "text"
+                    },
+                    {
+                      "key": "emails",
+                      "value": "kolawolesax@gmail.com",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{Live baseUrl}}/subscribers",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "subscribers"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Remove Subscribers",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"ids\": [\"\"] // Array of subscribers ids\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:6000/api/subscribers",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "6000",
+                  "path": [
+                    "api",
+                    "subscribers"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Authorization",
+          "item": [
+            {
+              "name": "Detect Email Domain/Provider",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"kolawoleakintayok@gmail.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Local baseUrl}}/auth/provider",
+                  "host": [
+                    "{{Local baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "provider"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Custom Authorization",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{Live baseUrl}}/campaigns",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "campaigns"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Oauth2 Authorization",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-organization-id",
+                    "value": "6936724cbf7d502c87f794ce",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "// The last ",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Local baseUrl}}/campaigns/auth/google",
+                  "host": [
+                    "{{Local baseUrl}}"
+                  ],
+                  "path": [
+                    "campaigns",
+                    "auth",
+                    "google"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Social Scheduler",
+      "item": [
+        {
+          "name": "Authorization",
+          "item": [
+            {
+              "name": "Connect Socials",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTRhMzcwNTE1NTQ5ZGNkYWIzMmUwNmUiLCJlbWFpbCI6ImtvbGF3b2xlc2F4QGdtYWlsLmNvbSIsImlhdCI6MTc2OTM1MDI3NiwiZXhwIjoxNzcxOTQyMjc2fQ.ZjWKeAiaucbd-wm8xGD4a0OviqkSa_qM-IBp4MWDdjE",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-org-id",
+                    "value": "6936724cbf7d502c87f794ce",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "// The last part of the url is a parameter that accepts any platform btw the ffg: \"facebook\", \"instagram\", \"twitter\", \"youtube\", \"linkedin\", \"tiktok\", \"pinterest\"",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Live baseUrl}}/socials/auth/twitter",
+                  "host": [
+                    "{{Live baseUrl}}"
+                  ],
+                  "path": [
+                    "socials",
+                    "auth",
+                    "twitter"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Post to one platform",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "// The last part of the url is a parameter that accepts any platform btw the ffg: \"facebook\", \"instagram\", \"twitter\", \"youtube\", \"linkedin\", \"tiktok\", \"pinterest\"\n{\n    \"content\": {\n        \"text\": \"This is a test post\",\n        \"imageUrl\": \"https://kolawole.com\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/socials/post/facebook",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "socials",
+                "post",
+                "facebook"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post to Multiple platform",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "// Platforms must be a list of the ffg: \"facebook\", \"instagram\", \"twitter\", \"youtube\", \"linkedin\", \"tiktok\", \"pinterest\"\n{\n    \"content\": {\n        \"text\": \"This is a test post\",\n        \"imageUrl\": \"https://kolawole.com\"\n    },\n    \"platforms\": [\"facebook\", \"instagram\", \"twitter\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/socials/broadcast",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "socials",
+                "broadcast"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ads Manager",
+      "item": [
+        {
+          "name": "Auth",
+          "item": [
+            {
+              "name": "Auth Ads operations",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-org-id",
+                    "value": "6936724cbf7d502c87f794ce",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{Local baseUrl}}/ads/auth/google",
+                  "host": [
+                    "{{Local baseUrl}}"
+                  ],
+                  "path": [
+                    "ads",
+                    "auth",
+                    "google"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Create Ad",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"platform\": \"meta\",\n  \"campaignData\": {\n    \"name\": \"Test Campaign\",\n    \"objective\": \"OUTCOME_TRAFFIC\",\n    \"status\": \"ACTIVE\",\n    \"daily_budget\": 1000\n  },\n  \"adSetData\": {\n    \"name\": \"Test Ad Set\",\n    \"daily_budget\": 500,\n    \"bid_amount\": 50,\n    \"targeting\": {\n      \"age_min\": 18,\n      \"age_max\": 65,\n      \"locations\": [\"US\"]\n    }\n  },\n  \"creativeData\": {\n    \"name\": \"Test Creative\",\n    \"object_story_spec\": {\n      \"link_data\": {\n        \"link\": \"https://example.com\",\n        \"message\": \"Check out our offer!\",\n        \"description\": \"Limited time offer\",\n        \"caption\": \"Special Discount\",\n        \"image_url\": \"https://example.com/image.jpg\"\n      }\n    }\n  },\n  \"adData\": {\n    \"name\": \"Test Ad\",\n    \"status\": \"ACTIVE\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/ads/create",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "ads",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Ad Accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/ads/accounts/google",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "ads",
+                "accounts",
+                "google"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Campaign",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"campaignData\": {\n    \"name\": \"Test Campaign\",\n    \"objective\": \"OUTCOME_TRAFFIC\",\n    \"status\": \"ACTIVE\",\n    \"daily_budget\": 1000\n  },\n  \"platform\": \"google\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5001/api/ads/google-ex",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5001",
+              "path": [
+                "api",
+                "ads",
+                "google-ex"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get or Create Campaigns",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"data\": {\n    \"name\": \"Test Campaign\",\n    \"objective\": \"OUTCOME_TRAFFIC\",\n    \"status\": \"ACTIVE\",\n    \"daily_budget\": 1000\n  },\n  \"action\": \"get\" // Action is either create or get\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/ads/campaigns/google",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "ads",
+                "campaigns",
+                "google"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Community Manager",
+      "item": [
+        {
+          "name": "Auth",
+          "item": [
+            {
+              "name": "Auth Community operations",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{Local baseUrl}}/comm/auth/linkedin",
+                  "host": [
+                    "{{Local baseUrl}}"
+                  ],
+                  "path": [
+                    "comm",
+                    "auth",
+                    "linkedin"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SEO",
+      "item": [
+        {
+          "name": "Get PageSpeed stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/seo/pagespeed?url=https://m360solutionsgroup.com/",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "seo",
+                "pagespeed"
+              ],
+              "query": [
+                {
+                  "key": "url",
+                  "value": "https://m360solutionsgroup.com/"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/seo",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "seo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save SEO details",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"gaPropertyId\": \"\",\n    \"gaApiSecret\": \"\",\n    \"gaMeasurementId\": \"\",\n    \"clarityProjectId\": \"tn02kkuk31\",\n    \"clarityApiKey\": \"\",\n    \"url\": \"https://www.m360solutionsgroup.com/\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/seo/cred",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "seo",
+                "cred"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get clarity details",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"dimensions\":[\"OS\", \"Browser\"]\n}"
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/seo/clarity",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "seo",
+                "clarity"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "item": []
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Get Billing Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/status/69763f5d01227c8f067a368f",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "status",
+                "69763f5d01227c8f067a368f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Capture card details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-org-id",
+                "value": "69763f5d01227c8f067a368f",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    // \"email\": \"kolawoleakointayok@gmail.com\",\n    \"features\": [\"creative_generator\", \"email_automation\", \"social_scheduler\", \"community_manager\"]\n    // \"amount\": 15,\n    // \"metadata\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/capture-card",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "capture-card"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Complete Capture card details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-org-id",
+                "value": "69763f5d01227c8f067a368f",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    // \"email\": \"kolawoleakointayok@gmail.com\",\n    // \"features\": [\"creative_generator\", \"email_automation\", \"social_scheduler\", \"community_manager\"]\n    \"reference\": \"dua0nug96b\"\n    // \"amount\": 15,\n    // \"metadata\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/capture-card/complete",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "capture-card",
+                "complete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Initialize Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-org-id",
+                "value": "69763f5d01227c8f067a368f",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"features\": [\"creative_generator\", \"email_automation\", \"social_scheduler\", \"community_manager\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/subscribe",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "subscribe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upgrade Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-org-id",
+                "value": "69763f5d01227c8f067a368f",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"features\": [\"creative_generator\", \"email_automation\", \"social_scheduler\", \"community_manager\", \"seo_toolkit\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/upgrade",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "upgrade"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Downgrade Subscription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-org-id",
+                "value": "69763f5d01227c8f067a368f",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"features\": [\"creative_generator\", \"email_automation\", \"social_scheduler\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/downgrade",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "downgrade"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Initiate payment trx",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"m360solutionsgroup@gmail.com\",\n    \"amount\": 15,\n    \"metadata\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/payment",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verify payment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/verify/ref_1769218992849_6936724cbf7d502c87f794ce_eyg6s8rnh",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "verify",
+                "ref_1769218992849_6936724cbf7d502c87f794ce_eyg6s8rnh"
+              ],
+              "query": [
+                {
+                  "key": "reference",
+                  "value": "ref_1769218992849_6936724cbf7d502c87f794ce_eyg6s8rnh",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List transactions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/transaction",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "transaction"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch trx details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/transaction/5555385753",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "transaction",
+                "5555385753"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List subscription plans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/plans",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "plans"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sync subscription plans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Local baseUrl}}/payment/plans/sync",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "payment",
+                "plans",
+                "sync"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Organization",
+      "item": [
+        {
+          "name": "Create Organization",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"kolawoleakintayok@gmail.com\",\n    \"name\": \"Kol Concepts\",\n    \"url\": \"www.kolawole-akintayo.vercel.app\",\n    \"avatar\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/organization",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "organization"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invite User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "x-organization-id",
+                "value": "6936724cbf7d502c87f794ce",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\" : \"layodesign001@gmail.com\",\n    \"role\" : \"viewer\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Local baseUrl}}/organization",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "organization"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Invite",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-organization-id",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{Local baseUrl}}/organization/invite?orgId=6936724cbf7d502c87f794ce&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIiLCJlbWFpbCI6ImtvbGF3b2xlc2F4QGdtYWlsLmNvbSIsImlhdCI6MTc2NTE4MzgwOCwiZXhwIjoxNzY3Nzc1ODA4fQ.X7Fknclb1xGm3-aHwdx6zvSHYIukJ_qRzLCykkDGhZ4",
+              "host": [
+                "{{Local baseUrl}}"
+              ],
+              "path": [
+                "organization",
+                "invite"
+              ],
+              "query": [
+                {
+                  "key": "orgId",
+                  "value": "6936724cbf7d502c87f794ce"
+                },
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIiLCJlbWFpbCI6ImtvbGF3b2xlc2F4QGdtYWlsLmNvbSIsImlhdCI6MTc2NTE4MzgwOCwiZXhwIjoxNzY3Nzc1ODA4fQ.X7Fknclb1xGm3-aHwdx6zvSHYIukJ_qRzLCykkDGhZ4"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTc2M2Y1YzAxMjI3YzhmMDY3YTM2OGQiLCJlbWFpbCI6ImtvbGF3b2xlYWtpbnRheW9rQGdtYWlsLmNvbSIsImlhdCI6MTc2OTM1NzE2NywiZXhwIjoxNzcxOTQ5MTY3fQ.B1CGln4RcauqVkllM6a4rxKQVow_SZMqbLyCGEgfQWg",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "Live baseUrl",
+      "value": "https://m360-wn9s.onrender.com/api"
+    },
+    {
+      "key": "Local baseUrl",
+      "value": "http://localhost:5001/api"
+    }
+  ]
+}

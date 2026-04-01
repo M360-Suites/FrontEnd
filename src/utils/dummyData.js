@@ -15,6 +15,7 @@ export const notifications = [
     body: "Your latest ad campaign is performing 20% better than last week. Check insights now!",
   },
 ];
+
 import {
   post1,
   post2,

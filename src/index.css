@@ -5,86 +5,86 @@
 @tailwind utilities;
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
-  background-color: #ffffff;
-  font-optical-sizing: auto;
+	font-family: "Open Sans", sans-serif;
+	background-color: #ffffff;
+	font-optical-sizing: auto;
 }
 .email-card {
-  background: #1fc16b0d;
+	background: #1fc16b0d;
 }
 .contact-card {
-  background: #fb37480d;
+	background: #fb37480d;
 }
-.connect-card{
-  background: #FF5C020A;
+.connect-card {
+	background: #ff5c020a;
 }
-.create-card{
-  background: #4D00FF0A;
+.create-card {
+	background: #4d00ff0a;
 }
 
 .camp-card {
-  background: #ffdb430d;
+	background: #ffdb430d;
 }
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+	width: 8px;
+	height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
+	background: #f1f1f1;
+	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff9256;
-  border-radius: 10px;
+	background: #3739f9;
+	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff9256;
+	background: #3739f9;
 }
 
 /* For Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: #ff9256 #f1f1f1;
+	scrollbar-width: thin;
+	scrollbar-color: #3739f9 #f1f1f1;
 }
 
 @layer components {
-  .card {
-    @apply bg-white rounded-md shadow-md p-4;
-  }
+	.card {
+		@apply bg-white rounded-md shadow-md p-4;
+	}
 }
 
 @layer utilities {
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
+	.custom-scrollbar::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
 
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
+	.custom-scrollbar::-webkit-scrollbar-track {
+		background: #f1f1f1;
+		border-radius: 10px;
+	}
 
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #ff9256;
-    border-radius: 10px;
-  }
+	.custom-scrollbar::-webkit-scrollbar-thumb {
+		background: #3739f9;
+		border-radius: 10px;
+	}
 
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #ff9256;
-  }
+	.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+		background: #3739f9;
+	}
 
-  .custom-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: #ff9256 #f1f1f1;
-  }
+	.custom-scrollbar {
+		scrollbar-width: thin;
+		scrollbar-color: #3739f9 #f1f1f1;
+	}
 }

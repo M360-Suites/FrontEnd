@@ -1,44 +1,24 @@
-import { RoundTable } from "../../assets/index";
+import { fr } from "../../assets/index";
 import LoginForm from "../../components/auth/LoginForm";
 
 const Login = () => {
-  return (
-    <div className='flex justify-center items-center mx-auto min-h-screen px-4 py-12 mt-[-80px]'>
-      <div className='flex flex-col md:flex-row gap-8 max-w-6xl w-full'>
-        {/* Image and list section - hidden on mobile, visible on desktop */}
-        <div className='hidden md:block md:w-1/2'>
-          <div className='w-[570px] h-[570px] max-w-full'>
-            <img
-              className='w-full h-full object-cover'
-              src={RoundTable}
-              alt='RoundTable'
-            />
-          </div>
-          <div className="mt-4">
-            <ul className="space-y-5 text-gray-700 font-medium">
-              <li className="flex items-center">
-                <span className="mr-2 text-primary-orange">✓</span>
-                Trusted by over 200 companies and SMEs
-              </li>
-              <li className="flex items-center">
-                <span className="mr-2 text-primary-orange">✓</span>
-                Making Marketing Easier
-              </li>
-              <li className="flex items-center">
-                <span className="mr-2 text-primary-orange">✓</span>
-                Enhancing Business growth
-              </li>
-            </ul>
-          </div>
-        </div>
+	return (
+		<div className='min-h-screen relative overflow-hidden bg-gradient-to-br from-white to-blue-50 flex items-center justify-center p-4'>
+			{/* Login Card */}
+			<div className='z-10 w-full max-w-lg bg-white rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 md:p-12 border border-blue-50/50'>
+				<LoginForm />
+			</div>
 
-        {/* Form section - full width on mobile, half width on desktop */}
-        <div className='w-full md:w-1/2 flex flex-col justify-center'>
-          <LoginForm />
-        </div>
-      </div>
-    </div>
-  );
+			{/* Illustration Bottom Left */}
+			<div className='hidden lg:block absolute bottom-0 left-0 w-[40%] max-w-[550px] z-0 pointer-events-none'>
+				<img
+					className='w-full h-auto object-bottom opacity-90'
+					src={fr}
+					alt='Business Growth Illustration'
+				/>
+			</div>
+		</div>
+	);
 };
 
 export default Login;
