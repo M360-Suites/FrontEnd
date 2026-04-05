@@ -17,14 +17,14 @@ const AppLayout = () => {
   const isDashboardRoute = location.pathname.includes("/dashboard");
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='min-h-screen bg-gray-50 w-full overflow-x-hidden'>
       {isAuthenticated ? <Header /> : <OnBoardingHeader />}
 
-      <div className='flex'>
+      <div className='flex w-full overflow-x-hidden'>
         {isAuthenticated && <SideBar />}
 
         <main
-          className={`flex-1 ${
+          className={`flex-1 w-full overflow-x-hidden ${
             isDashboardRoute && isAuthenticated
               ? "md:ml-[-220px] mt-4"
               : ""

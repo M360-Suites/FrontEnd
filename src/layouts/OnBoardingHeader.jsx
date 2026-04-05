@@ -113,8 +113,8 @@ const OnBoardingHeader = () => {
 	};
 
 	return (
-		<div className='sticky top-0 z-50 bg-white shadow-md'>
-			<div className='container mx-auto px-4 py-4'>
+		<div className='sticky top-0 z-50 bg-white shadow-md w-full overflow-x-hidden'>
+			<div className='w-full max-w-7xl mx-auto px-4 py-4'>
 				<div className='flex justify-between items-center'>
 					{/* Logo */}
 					<div className='flex-shrink-0'>

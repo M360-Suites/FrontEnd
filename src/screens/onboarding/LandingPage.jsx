@@ -6,7 +6,7 @@ import CTA from "../../components/landing/CTA";
 
 const LandingPage = () => {
 	return (
-		<div className=''>
+		<div className='w-full overflow-x-hidden min-h-screen'>
 			<Hero />
 			<Connect />
 			<Features />

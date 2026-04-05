@@ -112,17 +112,17 @@ const Extras = () => {
 						<motion.div 
 							animate={{ y: [0, 15, 0] }}
 							transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-							className='absolute top-10 -left-6 md:-left-12 bg-white p-3 rounded-xl shadow-xl border border-gray-100 z-20'
+							className='absolute top-10 left-2 md:-left-12 bg-white p-3 rounded-xl shadow-xl border border-gray-100 z-20'
 						>
-							<img src={s2} alt='stat 1' className='w-24 md:w-32 object-contain' />
+							<img src={s2} alt='stat 1' className='w-16 md:w-32 object-contain' />
 						</motion.div>
 						
 						<motion.div 
 							animate={{ y: [0, -20, 0] }}
 							transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-							className='absolute bottom-10 -right-4 md:-right-8 bg-white p-3 rounded-xl shadow-xl border border-gray-100 z-20'
+							className='absolute bottom-10 right-2 md:-right-8 bg-white p-3 rounded-xl shadow-xl border border-gray-100 z-20'
 						>
-							<img src={s1} alt='stat 2' className='w-24 md:w-32 object-contain' />
+							<img src={s1} alt='stat 2' className='w-16 md:w-32 object-contain' />
 						</motion.div>
 					</motion.div>
 				</div>
@@ -220,7 +220,7 @@ const Extras = () => {
 						<motion.div 
 							animate={{ y: [0, -15, 0] }}
 							transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-							className='absolute top-20 -left-6 md:-left-10 bg-white px-2 py-3 rounded-xl shadow-xl border border-gray-100 z-20 flex flex-col gap-3'
+							className='absolute top-20 hidden sm:flex flex-col gap-3 left-2 md:-left-10 bg-white px-2 py-3 rounded-xl shadow-xl border border-gray-100 z-20'
 						>
 							<div className="w-8 h-8 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center"><Icon icon="lucide:mouse-pointer-2" /></div>
 							<div className="w-8 h-8 rounded-lg text-gray-400 hover:bg-gray-50 flex items-center justify-center"><Icon icon="lucide:crop" /></div>
@@ -313,7 +313,7 @@ const Extras = () => {
 						<motion.div 
 							animate={{ y: [0, 20, 0] }}
 							transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-							className='absolute top-10 -right-6 md:-right-10 bg-white p-4 rounded-xl shadow-2xl border border-gray-100 z-20 w-64'
+							className='absolute top-10 hidden md:block -right-10 bg-white p-4 rounded-xl shadow-2xl border border-gray-100 z-20 w-64'
 						>
 							<div className="flex items-center gap-3 mb-2">
 								<div className="text-blue-500 bg-blue-50 rounded-full p-2"><Icon icon="lucide:twitter" /></div>
@@ -420,12 +420,12 @@ const Extras = () => {
 						<motion.div 
 							animate={{ y: [0, -15, 0] }}
 							transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-							className='absolute top-6 -left-4 md:-left-12 bg-white px-4 py-3 rounded-xl shadow-xl border border-gray-100 z-20 flex items-center gap-4'
+							className='absolute top-6 left-2 md:-left-12 bg-white px-2 py-2 md:px-4 md:py-3 rounded-xl shadow-xl border border-gray-100 z-20 flex items-center gap-2 md:gap-4'
 						>
-							<div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600 font-bold">#1</div>
+							<div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600 font-bold text-xs md:text-base">#1</div>
 							<div>
-								<p className="font-bold text-sm text-gray-800">"Marketing Tools"</p>
-								<p className="text-xs text-gray-500">Volume: 45,000/mo</p>
+								<p className="font-bold text-xs md:text-sm text-gray-800 truncate leading-tight">"Marketing Tools"</p>
+								<p className="text-[10px] md:text-xs text-gray-500">Vol: 45k/mo</p>
 							</div>
 						</motion.div>
 
@@ -433,12 +433,12 @@ const Extras = () => {
 						<motion.div 
 							animate={{ y: [0, 15, 0] }}
 							transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-							className='absolute bottom-10 -right-4 md:-right-8 bg-white p-3 rounded-xl shadow-xl border border-gray-100 z-20 flex items-center gap-3'
+							className='absolute bottom-10 right-2 md:-right-8 bg-white p-2 md:p-3 rounded-xl shadow-xl border border-gray-100 z-20 flex items-center gap-2 md:gap-3'
 						>
-							<div className="w-10 h-10 rounded-full border-4 border-cyan-500 border-l-gray-100 flex items-center justify-center"><Icon icon="lucide:arrow-up" className="text-cyan-500 text-xs" /></div>
+							<div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-4 border-cyan-500 border-l-gray-100 flex items-center justify-center"><Icon icon="lucide:arrow-up" className="text-cyan-500 text-[10px] md:text-xs" /></div>
 							<div>
-								<p className="text-xs text-gray-500">Domain Authority</p>
-								<p className="font-bold text-gray-800 text-lg">76<span className="text-xs text-gray-400 font-normal">/100</span></p>
+								<p className="text-[10px] md:text-xs text-gray-500">DA Score</p>
+								<p className="font-bold text-gray-800 text-sm md:text-lg">76<span className="text-[8px] md:text-xs text-gray-400 font-normal">/100</span></p>
 							</div>
 						</motion.div>
 
