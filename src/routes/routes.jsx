@@ -38,6 +38,10 @@ import { AuthProvider } from "../context/UseAuth";
 import Callback from "../components/auth/Callback";
 import LandingPage from "../screens/onboarding/LandingPage";
 import CommunityHub from "../screens/dashboard/CommunityHub";
+import MailOauth from "../screens/auth/MailOauth";
+import AdsOauth from "../screens/auth/AdsOauth";
+import CommOauth from "../screens/auth/CommOauth";
+import SocialOauth from "../screens/auth/SocialOauth";
 
 const router = createBrowserRouter([
 	{
@@ -81,6 +85,39 @@ const router = createBrowserRouter([
 					},
 				],
 			},
+
+			{
+            path: "/mail-auth/callback",
+            element: (
+              <PublicRoute>
+                <MailOauth />
+              </PublicRoute>
+            ),
+          },
+          {
+            path: "/ads-auth/callback",
+            element: (
+              <PublicRoute>
+                <AdsOauth />
+              </PublicRoute>
+            ),
+          },
+          {
+            path: "/comm-auth/callback",
+            element: (
+              <PublicRoute>
+                <CommOauth />
+              </PublicRoute>
+            ),
+          },
+          {
+            path: "/auth/callback",
+            element: (
+              <PublicRoute>
+                <SocialOauth />
+              </PublicRoute>
+            ),
+          },
 
 			// Auth routes (restricted - redirect to dashboard if logged in)
 			{
