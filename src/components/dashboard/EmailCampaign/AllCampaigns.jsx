@@ -1,14 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { campaignsData } from "../../../utils/dummyData";
+import useStore from "../../../state/store";
 
 const AllCampaigns = () => {
-  const [campaigns, setCampaigns] = useState(campaignsData);
+  const { emailCampaigns, fetchEmailCampaigns, deleteEmailCampaigns, isLoading } = useStore();
+  const [campaigns, setCampaigns] = useState([]);
   const [selectedCampaigns, setSelectedCampaigns] = useState([]);
   const [typeFilter, setTypeFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [showActionMenu, setShowActionMenu] = useState(false);
   const [actionMenuId, setActionMenuId] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
+
+  // Load campaigns from API on mount
+  useEffect(() => {
+    const load = async () => {
+      try {
+        setFetchError(null);
+        await fetchEmailCampaigns();
+      } catch (err) {
+        setFetchError("Failed to load campaigns. Please try again.");
+      }
+    };
+    load();
+  }, []);
+
+  // Sync local state with store
+  useEffect(() => {
+    setCampaigns(emailCampaigns);
+  }, [emailCampaigns]);
 
   // Filter campaigns based on selected filters
   const filteredCampaigns = campaigns.filter((campaign) => {
@@ -40,15 +60,15 @@ const AllCampaigns = () => {
     }
   };
 
-  // Handle delete selected campaigns
-  const handleDeleteSelected = () => {
-    setCampaigns(
-      campaigns.filter(
-        (campaign) => !selectedCampaigns.includes(campaign.id)
-      )
-    );
-    setSelectedCampaigns([]);
-    setShowActionMenu(false);
+  // Handle delete selected campaigns via API
+  const handleDeleteSelected = async () => {
+    try {
+      await deleteEmailCampaigns(selectedCampaigns);
+      setSelectedCampaigns([]);
+      setShowActionMenu(false);
+    } catch (err) {
+      console.error("Delete campaigns error:", err);
+    }
   };
 
   // Handle individual campaign actions
@@ -60,10 +80,14 @@ const AllCampaigns = () => {
     }
   };
 
-  // Handle delete single campaign
-  const handleDeleteCampaign = (id) => {
-    setCampaigns(campaigns.filter((campaign) => campaign.id !== id));
-    setActionMenuId(null);
+  // Handle delete single campaign via API
+  const handleDeleteCampaign = async (id) => {
+    try {
+      await deleteEmailCampaigns([id]);
+      setActionMenuId(null);
+    } catch (err) {
+      console.error("Delete campaign error:", err);
+    }
   };
 
   // Get status badge color
@@ -80,8 +104,33 @@ const AllCampaigns = () => {
     }
   };
 
+  if (isLoading && campaigns.length === 0) {
+    return (
+      <div className='flex items-center justify-center min-h-screen'>
+        <div className='text-center'>
+          <Icon icon='mdi:loading' className='text-4xl text-primary-orange mx-auto mb-4 animate-spin' />
+          <p className='text-gray-500'>Loading campaigns...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className='p-4 md:p-6 lg:p-8 bg-gray-50 min-h-screen'>
+      {/* Error banner */}
+      {fetchError && (
+        <div className='mb-4 p-3 bg-red-100 border border-red-300 text-red-700 rounded-lg flex items-center gap-2'>
+          <Icon icon='mdi:alert-circle' />
+          <span className='text-sm'>{fetchError}</span>
+          <button
+            onClick={() => fetchEmailCampaigns()}
+            className='ml-auto text-sm font-medium underline'
+          >
+            Retry
+          </button>
+        </div>
+      )}
+
       {/* Header and Filters */}
       <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6'>
         <h1 className='text-xl md:text-2xl font-bold text-gray-800'>
@@ -235,7 +284,7 @@ const AllCampaigns = () => {
           {filteredCampaigns.length > 0 ? (
             filteredCampaigns.map((campaign) => (
               <div
-                key={campaign.id}
+                key={campaign._id || campaign.id}
                 className='hover:bg-gray-50 transition-colors'
               >
                 {/* Desktop Row */}
@@ -243,16 +292,18 @@ const AllCampaigns = () => {
                   <div className='flex items-center'>
                     <input
                       type='checkbox'
-                      checked={selectedCampaigns.includes(campaign.id)}
-                      onChange={() => handleSelectCampaign(campaign.id)}
+                      checked={selectedCampaigns.includes(campaign._id || campaign.id)}
+                      onChange={() => handleSelectCampaign(campaign._id || campaign.id)}
                       className='w-4 h-4 text-primary-orange rounded focus:ring-primary-orange'
                     />
                     <div className='ml-3 flex items-center'>
-                      <img
-                        src={campaign.image}
-                        alt={campaign.name}
-                        className='w-8 h-8 rounded-full object-cover mr-2'
-                      />
+                      {campaign.image && (
+                        <img
+                          src={campaign.image}
+                          alt={campaign.name}
+                          className='w-8 h-8 rounded-full object-cover mr-2'
+                        />
+                      )}
                       <span className='font-medium text-gray-800'>
                         {campaign.name}
                       </span>
@@ -282,12 +333,12 @@ const AllCampaigns = () => {
                   <div className='text-right relative'>
                     <button
                       className='text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100'
-                      onClick={() => toggleActionMenu(campaign.id)}
+                      onClick={() => toggleActionMenu(campaign._id || campaign.id)}
                     >
                       <Icon icon='mdi:dots-vertical' className='text-xl' />
                     </button>
 
-                    {actionMenuId === campaign.id && (
+                    {actionMenuId === (campaign._id || campaign.id) && (
                       <div className='absolute right-0 top-full mt-1 bg-white shadow-lg rounded-lg overflow-hidden z-10 border border-gray-200'>
                         <button
                           className='w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center text-gray-700'
@@ -301,7 +352,7 @@ const AllCampaigns = () => {
 
                         <button
                           className='w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center text-red-600'
-                          onClick={() => handleDeleteCampaign(campaign.id)}
+                          onClick={() => handleDeleteCampaign(campaign._id || campaign.id)}
                         >
                           <Icon icon='mdi:delete' className='mr-2' />
                           Delete

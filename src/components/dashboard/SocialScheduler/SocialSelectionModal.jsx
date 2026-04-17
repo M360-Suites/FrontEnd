@@ -60,14 +60,10 @@ const SocialSelectionModal = ({ toggleModal }) => {
 
 	// Handle authorization completion
 	const handleAuthorize = async () => {
-		// Successfully connected
 		if (selectedAccount) {
-			await connectSocialAccount(selectedAccount);
+			// Pass the API-expected slug (e.g. "twitter") not the display name
+			await connectSocialAccount(getPlatformSlug(selectedAccount));
 		}
-		console.log("Account connected successfully:", {
-			platform: selectedAccount,
-			url: socialUrl,
-		});
 		toggleModal();
 	};
 
@@ -82,16 +78,22 @@ const SocialSelectionModal = ({ toggleModal }) => {
 		return socialAccounts.find((social) => social.name === name);
 	};
 
-	// Map social platform names to SocialAuthorization platform prop
-	const getPlatformName = (name) => {
+	// Map display names → lowercase API slugs the backend accepts.
+	// API platforms: "facebook", "instagram", "twitter", "youtube",
+	//                "linkedin", "tiktok", "pinterest"
+	const getPlatformSlug = (name) => {
 		const platformMap = {
-			Twitter: "X",
-			X: "X",
-			Instagram: "Instagram",
-			LinkedIn: "LinkedIn",
-			Facebook: "Facebook",
+			"Facebook": "facebook",
+			"Instagram": "instagram",
+			"X (Formerly Twitter)": "twitter",
+			"X": "twitter",
+			"Twitter": "twitter",
+			"LinkedIn": "linkedin",
+			"YouTube": "youtube",
+			"TikTok": "tiktok",
+			"Pinterest": "pinterest",
 		};
-		return platformMap[name] || name;
+		return platformMap[name] || name.toLowerCase();
 	};
 
 	return (
@@ -227,7 +229,7 @@ const SocialSelectionModal = ({ toggleModal }) => {
 						>
 							{currentAuthPlatform && (
 								<SocialAuthorization
-									platform={getPlatformName(currentAuthPlatform)}
+									platform={getPlatformSlug(currentAuthPlatform)}
 									onAuthorize={handleAuthorize}
 									onCancel={handleCancelAuth}
 								/>
