@@ -5,12 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import SocialAuthorization from "../../ui/SocialAuthorization";
 import useStore from "../../../state/store";
 
-const SocialSelectionModal = ({ toggleModal }) => {
+const SocialSelectionModal = ({ toggleModal, initialPlatform = "" }) => {
 	const { connectSocialAccount } = useStore();
 	// Change to store a single selected account instead of multiple
-	const [selectedAccount, setSelectedAccount] = useState("");
+	const [selectedAccount, setSelectedAccount] = useState(initialPlatform);
 	const [error, setError] = useState("");
-	const [step, setStep] = useState(1);
+	const [step, setStep] = useState(initialPlatform ? 2 : 1);
 	const [socialUrl, setSocialUrl] = useState("");
 	const [currentAuthPlatform, setCurrentAuthPlatform] =
 		useState(null);
@@ -52,7 +52,12 @@ const SocialSelectionModal = ({ toggleModal }) => {
 		if (step === 3) {
 			setStep(2);
 		} else {
-			setStep(1);
+			if (initialPlatform) {
+				// If we started straight at step 2 because of a specific card click, backing out means closing the modal
+				toggleModal();
+			} else {
+				setStep(1);
+			}
 		}
 		// Clear any errors when going back
 		if (error) setError("");
