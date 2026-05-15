@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import useStore from "../../../state/store";
+import CreateCampaignModal from "./CreateCampaignModal";
 
 const AllCampaigns = () => {
   const { emailCampaigns, fetchEmailCampaigns, deleteEmailCampaigns, isLoading } = useStore();
@@ -11,6 +12,8 @@ const AllCampaigns = () => {
   const [showActionMenu, setShowActionMenu] = useState(false);
   const [actionMenuId, setActionMenuId] = useState(null);
   const [fetchError, setFetchError] = useState(null);
+
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   // Load campaigns from API on mount
   useEffect(() => {
@@ -174,7 +177,10 @@ const AllCampaigns = () => {
           </div>
 
           {/* Create Campaign Button */}
-          <button className='bg-primary-orange text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-orange/90 transition-colors flex items-center justify-center'>
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
+            className='bg-primary-orange text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-orange/90 transition-colors flex items-center justify-center'
+          >
             <Icon icon='mdi:plus' className='mr-1' />
             Create Campaign
           </button>
@@ -488,7 +494,10 @@ const AllCampaigns = () => {
                   : "Get started by creating your first email campaign"}
               </p>
               {!typeFilter && !statusFilter && (
-                <button className='mt-4 bg-primary-orange text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-orange/90 transition-colors flex items-center justify-center mx-auto'>
+                <button
+                  onClick={() => setIsCreateModalOpen(true)}
+                  className='mt-4 bg-primary-orange text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-orange/90 transition-colors flex items-center justify-center mx-auto'
+                >
                   <Icon icon='mdi:plus' className='mr-1' />
                   Create Campaign
                 </button>
@@ -561,6 +570,17 @@ const AllCampaigns = () => {
           </div>
         )}
       </div>
+
+      {/* Create Campaign Modal */}
+      {isCreateModalOpen && (
+        <CreateCampaignModal
+          handleToggleModal={() => setIsCreateModalOpen(false)}
+          onCampaignCreated={() => {
+            fetchEmailCampaigns();
+            setIsCreateModalOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 };
