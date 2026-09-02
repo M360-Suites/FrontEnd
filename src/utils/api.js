@@ -1,3 +1,2 @@
-export const devApiUrl = "https://server.biz360prime.com/api";
-export const prodApiUrl = "https://server.biz360prime.com/api";
- 
+export const devApiUrl = "https://m360-wn9s.onrender.com/api";
+export const prodApiUrl = "https://m360-wn9s.onrender.com/api";
