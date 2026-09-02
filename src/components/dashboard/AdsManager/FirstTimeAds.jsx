@@ -13,6 +13,7 @@ const FirstTimeAds = () => {
 	const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 	const [selectedPlatform, setSelectedPlatform] = useState("");
+	const [platformToConnect, setPlatformToConnect] = useState("");
 
 	const toggleConnectModal = () => {
 		setIsConnectModalOpen(!isConnectModalOpen);
@@ -35,8 +36,8 @@ const FirstTimeAds = () => {
 			: connectedSocialAccounts.length > 0;
 
 		if (!isConnected) {
-			// If they clicked a specific platform, we can maybe auto-select it in the modal?
-			// For now just open the connect modal.
+			// If they clicked a specific platform, auto-select it in the modal
+			setPlatformToConnect(platform || "");
 			setIsConnectModalOpen(true);
 		} else {
 			setSelectedPlatform(
@@ -49,7 +50,10 @@ const FirstTimeAds = () => {
 	return (
 		<div className='p-4'>
 			{isConnectModalOpen && (
-				<SocialSelectionModal toggleModal={toggleConnectModal} />
+				<SocialSelectionModal 
+					toggleModal={toggleConnectModal} 
+					initialPlatform={platformToConnect} 
+				/>
 			)}
 
 			<CreateAdModal

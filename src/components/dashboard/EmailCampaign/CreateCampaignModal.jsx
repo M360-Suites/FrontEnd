@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import useStore from "../../../state/store";
+import EmailSentModal from "./EmailSentModal";
 
 const CreateCampaignModal = ({
 	handleToggleModal,
@@ -11,8 +12,7 @@ const CreateCampaignModal = ({
 	const [selectedOption, setSelectedOption] = useState(null);
 	const [currentStep, setCurrentStep] = useState("select");
 	const [isLoading, setIsLoading] = useState(false);
-	const [authorizationStatus, setAuthorizationStatus] =
-		useState(null);
+	const [authorizationStatus, setAuthorizationStatus] = useState(null);
 	const [detectedProvider, setDetectedProvider] = useState(null);
 	const [providerEmail, setProviderEmail] = useState("");
 	const [campaignData, setCampaignData] = useState({
@@ -25,6 +25,7 @@ const CreateCampaignModal = ({
 	});
 	const [subscribers, setSubscribers] = useState([]);
 	const [error, setError] = useState(null);
+	const [showSentModal, setShowSentModal] = useState(false);
 
 	const campaignOptions = [
 		{
@@ -185,7 +186,8 @@ const CreateCampaignModal = ({
 
 			if (response) {
 				onCampaignCreated?.(response);
-				handleToggleModal();
+				// Show success modal instead of immediately closing
+				setShowSentModal(true);
 			}
 		} catch (error) {
 			console.error("Campaign creation error:", error);
@@ -785,6 +787,13 @@ const CreateCampaignModal = ({
 	);
 
 	return (
+		<>
+		<EmailSentModal
+			isOpen={showSentModal}
+			onClose={() => { setShowSentModal(false); handleToggleModal(); }}
+			recipientCount={campaignData.recipients.length || subscribers.length || 1}
+			campaignName={campaignData.name}
+		/>
 		<AnimatePresence>
 			<motion.div
 				className='fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 p-3 sm:p-4 backdrop-blur-sm'
@@ -827,6 +836,7 @@ const CreateCampaignModal = ({
 				</motion.div>
 			</motion.div>
 		</AnimatePresence>
+		</>
 	);
 };
 
