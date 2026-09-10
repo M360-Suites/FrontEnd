@@ -2,7 +2,6 @@ import { useState } from "react";
 import mainLogo from "/dm360.png";
 import { useAuth } from "../context/UseAuth";
 import { Icon } from "@iconify/react";
-import NotificationCard from "../components/ui/NotificationCard";
 import ProfileCard from "../components/ui/ProfileCard";
 
 const Header = () => {
@@ -10,16 +9,12 @@ const Header = () => {
 	console.log(user);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
-	const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 	const [isProfileOpen, setIsProfileOpen] = useState(false);
 
 	const toggleOpenProfile = () => {
 		setIsProfileOpen(!isProfileOpen);
 	};
 
-	const toggleNotification = () => {
-		setIsNotificationOpen(!isNotificationOpen);
-	};
 	const toggleMenu = () => {
 		setIsMenuOpen(!isMenuOpen);
 	};
@@ -60,23 +55,6 @@ const Header = () => {
 						<Icon icon='proicons:search' className='w-6 h-6' />
 					</button>
 
-					<div className='relative'>
-						<Icon
-							onClick={toggleNotification}
-							className='w-6 h-6 text-gray-600'
-							icon='mingcute:notification-line'
-						/>
-						<div className='absolute -top-1 -right-1 w-4 h-4 bg-primary-orange rounded-full flex items-center justify-center'>
-							<span className='text-white text-xs'>3</span>
-						</div>
-
-						{isNotificationOpen && (
-							<NotificationCard
-								toggleNotification={toggleNotification}
-							/>
-						)}
-					</div>
-
 					<button onClick={toggleMenu} className='text-gray-600'>
 						<Icon
 							icon={isMenuOpen ? "mdi:close" : "mdi:menu"}
@@ -87,29 +65,9 @@ const Header = () => {
 
 				{/* User section - desktop */}
 				<div className='hidden md:flex justify-end items-center space-x-4'>
-					{/* notifications */}
-					<div className='relative'>
-						<Icon
-							onClick={toggleNotification}
-							className='w-[24px] h-[24px] text-gray-600 cursor-pointer'
-							icon='mingcute:notification-line'
-						/>
-						<div className='absolute -top-1 -right-1 w-4 h-4 bg-primary-orange rounded-full flex items-center justify-center'>
-							<span className='text-white text-xs'>3</span>
-						</div>
-
-						{isNotificationOpen && (
-							<NotificationCard
-								toggleNotification={toggleNotification}
-							/>
-						)}
-					</div>
-
-					<div className='bg-black rounded-full w-[40px] h-[40px] cursor-pointer'></div>
-
 					<div className='flex flex-col relative'>
 						<div>
-							<span className='font-medium'>{user.user.companyName}</span>
+							<span className='font-medium'>{user?.user?.name || user?.user?.companyName || "User"}</span>
 						</div>
 						<div className='flex items-center'>
 							{/* <small className='text-xs text-gray-500 font-extralight'>
@@ -143,22 +101,13 @@ const Header = () => {
 			{/* Mobile menu */}
 			{isMenuOpen && (
 				<div className='md:hidden mt-2 py-2 border-t border-gray-200'>
-					<div className='flex items-center space-x-3 py-3'>
-						<div className='bg-black rounded-full w-[40px] h-[40px]'></div>
+					<div className='flex items-center space-x-3 py-3 px-3'>
 						<div>
-							<div className='font-medium'>{user.companyName}</div>
-							{/* <div className='text-xs text-gray-500'>ID-204-5089</div> */}
+							<div className='font-medium text-lg'>{user?.user?.name || user?.user?.companyName || "User"}</div>
 						</div>
 					</div>
 
-					<div className='py-2 border-t border-gray-200'>
-						<div className='flex items-center space-x-2 py-2'>
-							<Icon
-								icon='mingcute:notification-line'
-								className='text-gray-600'
-							/>
-							<span>Notifications</span>
-						</div>
+					<div className='py-2 border-t border-gray-200 px-3'>
 						<div className='flex items-center space-x-2 py-2'>
 							<Icon
 								icon='carbon:user-profile'

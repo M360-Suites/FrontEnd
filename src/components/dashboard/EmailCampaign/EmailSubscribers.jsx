@@ -4,7 +4,7 @@ import useStore from "../../../state/store";
 import ImportContactsModal from "./ImportContactsModal";
 
 const EmailSubscribers = () => {
-	const { emailSubscribers, removeEmailSubscriber } = useStore();
+	const { emailSubscribers, removeEmailSubscriber, fetchEmailSubscribers } = useStore();
 	const [subscribers, setSubscribers] = useState([]);
 	const [selectedSubscribers, setSelectedSubscribers] = useState([]);
 	const [sourceFilter, setSourceFilter] = useState("");
@@ -22,10 +22,13 @@ const EmailSubscribers = () => {
 		limit: 10,
 	});
 
-	// Load subscribers on component mount and when store changes
+	// Load subscribers from API on mount
 	useEffect(() => {
 		loadSubscribers();
-	}, [emailSubscribers]);
+		fetchEmailSubscribers().catch((err) => {
+			console.error("Failed to fetch subscribers:", err);
+		});
+	}, []);
 
 	const loadSubscribers = () => {
 		// Sync with store
@@ -43,7 +46,10 @@ const EmailSubscribers = () => {
 	};
 
 	const handleImportSuccess = () => {
-		// Store updates automatically trigger useEffect
+		// Refresh subscriber list from API after a successful import
+		fetchEmailSubscribers().catch((err) => {
+			console.error("Refresh after import failed:", err);
+		});
 	};
 
 	// Filter subscribers based on selected filters and search term

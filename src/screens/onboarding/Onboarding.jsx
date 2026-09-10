@@ -38,80 +38,83 @@ const Onboarding = () => {
 	};
 
 	return (
-		<div className='min-h-screen relative overflow-hidden bg-gradient-to-b from-white via-blue-50/50 to-blue-100 flex flex-col items-center justify-center p-4'>
-			{/* Main Content Container */}
-			<div className='z-10 w-full max-w-3xl text-center flex flex-col items-center'>
-				{/* Title */}
-				<h1 className='text-4xl md:text-6xl font-bold text-blue-900 mb-6'>
-					Your{" "}
-					<span className='text-orange-300'>free trial</span>{" "}
-				</h1>
+		<div className='min-h-screen overflow-hidden bg-gradient-to-b from-white via-blue-50/50 to-blue-100 flex flex-col'>
+			{/* Two-column layout */}
+			<div className='flex flex-1 min-h-screen'>
+				{/* LEFT — Illustration column */}
+				<div className='hidden md:flex md:w-1/2 lg:w-[55%] items-end justify-start flex-shrink-0 overflow-hidden'>
+					<img
+						src={fr}
+						alt='Marketing Illustration'
+						className='w-full max-w-[680px] h-auto object-bottom self-end'
+					/>
+				</div>
 
-				{/* Description */}
-				<p className='text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-2 leading-relaxed'>
-					Unlock your business growth with streamline marketing and
-					automation. Save time, boost engagement, and grow
-					effortlessly
-				</p>
+				{/* RIGHT — Content column */}
+				<div className='w-full md:w-1/2 lg:w-[45%] flex flex-col items-start justify-center px-8 md:px-12 lg:px-16 py-16'>
+					{/* Title */}
+					<h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-blue-900 mb-6 leading-tight'>
+						Your{" "}
+						<span className='text-orange-400'>free trial</span>
+					</h1>
 
-				{/* Trial Info Link */}
-				<p className='text-gray-500 text-sm mb-10'>
-					Try 14 days free trial, auto renews monthly{" "}
-					<span className='text-blue-600 underline cursor-pointer'>
-						cancel anytime
-					</span>
-				</p>
+					{/* Description */}
+					<p className='text-gray-600 text-base md:text-lg leading-relaxed mb-3 max-w-md'>
+						Unlock your business growth with streamlined marketing
+						and automation. Save time, boost engagement, and grow
+						effortlessly.
+					</p>
 
-				{/* Display error if exists */}
-				{error && (
-					<div className='mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg w-full max-w-md'>
-						{error}
-					</div>
-				)}
+					{/* Trial Info */}
+					<p className='text-gray-500 text-sm mb-8'>
+						Try 14 days free trial, auto renews monthly.{" "}
+						<span className='text-blue-600 underline cursor-pointer'>
+							Cancel anytime
+						</span>
+					</p>
 
-				{/* Search/Email Pill Form */}
-				<div className='w-full max-w-md relative'>
-					<div className='w-full bg-white border border-gray-200 rounded-full shadow-sm p-1.5 pl-6 flex items-center focus-within:ring-2 focus-within:ring-blue-100 transition-all'>
-						<input
-							id='email'
-							name='email'
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							type='email'
-							placeholder='Enter email'
-							className='flex-grow bg-transparent border-none outline-none text-gray-700 placeholder-gray-400 text-base h-full'
-							required
-						/>
-						<Button
-							onClick={handleRequest}
-							disabled={loading}
-							className='bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-3 font-medium transition-colors duration-300 shadow-md shadow-blue-600/20'
-							title={loading ? "Sending..." : "Sign up"}
-						/>
-					</div>
+					{/* Display error if exists */}
+					{error && (
+						<div className='mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg w-full max-w-md'>
+							{error}
+						</div>
+					)}
 
-					{/* Already have an account link */}
-					<div className='text-center mt-6'>
-						<p className='text-gray-600 text-sm'>
-							Already have an account?{" "}
-							<Link
-								to='/login'
-								className='text-blue-600 font-semibold hover:underline'
-							>
-								Login
-							</Link>
-						</p>
+					{/* Email Pill Form */}
+					<div className='w-full max-w-md'>
+						<div className='w-full bg-white border border-gray-200 rounded-full shadow-sm p-1.5 pl-6 flex items-center focus-within:ring-2 focus-within:ring-blue-100 transition-all'>
+							<input
+								id='email'
+								name='email'
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								type='email'
+								placeholder='Enter your email'
+								className='flex-grow bg-transparent border-none outline-none text-gray-700 placeholder-gray-400 text-base h-full'
+								required
+							/>
+							<Button
+								onClick={handleRequest}
+								disabled={loading}
+								className='bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-3 font-medium transition-colors duration-300 shadow-md shadow-blue-600/20 whitespace-nowrap'
+								title={loading ? "Sending..." : "Sign up"}
+							/>
+						</div>
+
+						{/* Already have an account */}
+						<div className='mt-5'>
+							<p className='text-gray-600 text-sm'>
+								Already have an account?{" "}
+								<Link
+									to='/login'
+									className='text-blue-600 font-semibold hover:underline'
+								>
+									Login
+								</Link>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			{/* Illustration Bottom Left - Absolutely positioned */}
-			<div className='fixed md:absolute bottom-0 left-0 w-[700px] max-w-[55vw] z-0 opacity-100 pointer-events-none'>
-				<img
-					src={fr}
-					alt='Decoration'
-					className='w-full h-auto object-bottom'
-				/>
 			</div>
 		</div>
 	);

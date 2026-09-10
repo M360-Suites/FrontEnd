@@ -5,12 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import SocialAuthorization from "../../ui/SocialAuthorization";
 import useStore from "../../../state/store";
 
-const SocialSelectionModal = ({ toggleModal }) => {
+const SocialSelectionModal = ({ toggleModal, initialPlatform = "" }) => {
 	const { connectSocialAccount } = useStore();
 	// Change to store a single selected account instead of multiple
-	const [selectedAccount, setSelectedAccount] = useState("");
+	const [selectedAccount, setSelectedAccount] = useState(initialPlatform);
 	const [error, setError] = useState("");
-	const [step, setStep] = useState(1);
+	const [step, setStep] = useState(initialPlatform ? 2 : 1);
 	const [socialUrl, setSocialUrl] = useState("");
 	const [currentAuthPlatform, setCurrentAuthPlatform] =
 		useState(null);
@@ -52,7 +52,12 @@ const SocialSelectionModal = ({ toggleModal }) => {
 		if (step === 3) {
 			setStep(2);
 		} else {
-			setStep(1);
+			if (initialPlatform) {
+				// If we started straight at step 2 because of a specific card click, backing out means closing the modal
+				toggleModal();
+			} else {
+				setStep(1);
+			}
 		}
 		// Clear any errors when going back
 		if (error) setError("");
@@ -60,14 +65,10 @@ const SocialSelectionModal = ({ toggleModal }) => {
 
 	// Handle authorization completion
 	const handleAuthorize = async () => {
-		// Successfully connected
 		if (selectedAccount) {
-			await connectSocialAccount(selectedAccount);
+			// Pass the API-expected slug (e.g. "twitter") not the display name
+			await connectSocialAccount(getPlatformSlug(selectedAccount));
 		}
-		console.log("Account connected successfully:", {
-			platform: selectedAccount,
-			url: socialUrl,
-		});
 		toggleModal();
 	};
 
@@ -82,16 +83,22 @@ const SocialSelectionModal = ({ toggleModal }) => {
 		return socialAccounts.find((social) => social.name === name);
 	};
 
-	// Map social platform names to SocialAuthorization platform prop
-	const getPlatformName = (name) => {
+	// Map display names → lowercase API slugs the backend accepts.
+	// API platforms: "facebook", "instagram", "twitter", "youtube",
+	//                "linkedin", "tiktok", "pinterest"
+	const getPlatformSlug = (name) => {
 		const platformMap = {
-			Twitter: "X",
-			X: "X",
-			Instagram: "Instagram",
-			LinkedIn: "LinkedIn",
-			Facebook: "Facebook",
+			"Facebook": "facebook",
+			"Instagram": "instagram",
+			"X (Formerly Twitter)": "twitter",
+			"X": "twitter",
+			"Twitter": "twitter",
+			"LinkedIn": "linkedin",
+			"YouTube": "youtube",
+			"TikTok": "tiktok",
+			"Pinterest": "pinterest",
 		};
-		return platformMap[name] || name;
+		return platformMap[name] || name.toLowerCase();
 	};
 
 	return (
@@ -227,7 +234,7 @@ const SocialSelectionModal = ({ toggleModal }) => {
 						>
 							{currentAuthPlatform && (
 								<SocialAuthorization
-									platform={getPlatformName(currentAuthPlatform)}
+									platform={getPlatformSlug(currentAuthPlatform)}
 									onAuthorize={handleAuthorize}
 									onCancel={handleCancelAuth}
 								/>

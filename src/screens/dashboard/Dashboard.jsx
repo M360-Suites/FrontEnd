@@ -32,11 +32,12 @@ const Dashboard = () => {
 					{/* Dashboard cards */}
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6'>
 						{dashBoardCardsData.map((item, index) => (
-							<div
-								key={index}
-								className='bg-white p-5 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200'
-							>
-								<div className='flex items-center justify-between w-full'>
+							<Link to={item.link}>
+								<div
+									key={index}
+									className='bg-white p-5 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200'
+								>
+									<div className='flex items-center justify-between w-full'>
 									<div className='flex-shrink-0 w-12 h-12 flex items-center'>
 										<img
 											src={item.icon}
@@ -65,6 +66,7 @@ const Dashboard = () => {
 									</div>
 								</div>
 							</div>
+							</Link>
 						))}
 					</div>
 

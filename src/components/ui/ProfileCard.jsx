@@ -1,102 +1,46 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { userProfile } from "../../utils/dummyData";
+import { Link } from "react-router-dom";
 
 const ProfileCard = ({ toggleOpenProfile, user }) => {
   return (
-    <div className='card absolute right-0 top-12 bg-white border border-t-transparent rounded-lg p-4 w-[400px] h-[630px] shadow-lg z-50'>
-      <div className='flex items-center space-x-4 border-b border-gray-200 pb-8'>
-        <div className='w-[70px] h-[70px] rounded-full overflow-hidden'>
-          <img
-            className='w-full h-full object-cover rounded-full'
-            src={userProfile.image}
-            alt={userProfile.name}
-          />
-        </div>
-
-        <div className='flex flex-col space-y-2 border-gray-200'>
-          <div>
-            <span className='font-bold text-gray-800'>
-              {user.user.companyName}
-            </span>
-          </div>
-          <div>
-            {/* <span className='font-light text-gray-500'>
-              ID: {userProfile.id}
-            </span> */}
-          </div>
-        </div>
-        <div className='flex flex-1 justify-end'>
-          <Icon
-            onClick={toggleOpenProfile}
-            icon={"mdi:close"}
-            className='text-xl text-gray-500 cursor-pointer hover:text-gray-700 transition-colors'
-          />
-        </div>
-      </div>
-
-      <div className='mt-8'>
-        <div className='flex items-center space-x-4 mb-2'>
-          <Icon icon={"oui:email"} className='text-xl text-gray-500' />
-          <span className='text-gray-500 text-sm'>Email</span>
-        </div>
-        <p className='text-gray-800 pl-8'>{user.user.companyEmail}</p>
-      </div>
-
-      {/* <div className='flex border-b border-gray-200 py-4 gap-14 mt-6 text-gray-500'>
+    <div className='absolute right-0 top-14 bg-white border border-gray-100 rounded-2xl p-6 w-[340px] shadow-2xl z-50 transform origin-top-right transition-all'>
+      {/* Header */}
+      <div className='flex items-start justify-between pb-5 border-b border-gray-100'>
         <div className='flex flex-col'>
-          <div className='flex items-center space-x-2 mb-2'>
-            <Icon icon={"ph:phone"} className='text-xl text-gray-500' />
-            <span className='text-gray-500 text-sm'>Phone</span>
-          </div>
-          <p className='text-gray-700 text-sm pl-7'>{userProfile.phone}</p>
+          <span className='font-bold text-gray-900 text-lg leading-tight truncate max-w-[240px]'>
+            {user?.user?.name || user?.user?.companyName || "User"}
+          </span>
+          <span className='text-sm text-gray-500 mt-1 truncate max-w-[240px]'>
+            {user?.user?.email || "No email provided"}
+          </span>
         </div>
-
-        <div className='flex flex-col'>
-          <div className='flex items-center space-x-2 mb-2'>
-            <Icon
-              icon={"basil:location-outline"}
-              className='text-xl text-gray-500'
-            />
-            <span className='text-gray-500 text-sm'>Location</span>
-          </div>
-          <p className='text-gray-700 text-sm pl-7'>
-            {userProfile.address}
-          </p>
-        </div>
-      </div> */}
-
-      {/* Additional sections */}
-      <div className='mt-6'>
-        <button className='w-full py-2 bg-light-orange text-white rounded-lg hover:bg-primary-orange transition-colors'>
-          Edit Profile
+        <button 
+          onClick={toggleOpenProfile}
+          className='text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100'
+        >
+          <Icon icon={"mdi:close"} className='text-xl' />
         </button>
       </div>
 
-      <div className='flex mt-4 border-t border-gray-200 pt-4 items-center justify-around'>
-        <div>
-          <p className=' text-gray-500'>Storage Plan</p>
-        </div>
-        <div className='w-[80px] h-[30px] bg-orange-100 flex items-center justify-center rounded-md'>
-          <p className='text-sm font-semibold text-primary-orange'>
-            Tier {userProfile.tier}
-          </p>
-        </div>
-      </div>
-
-      <div className='flex flex-col'>
-        <div className='w-full bg-gray-300 h-[20px] mt-4 rounded-lg'></div>
-
-        <div className='flex justify-between mt-2 text-gray-400'>
-          <p>5GB</p>
-          <p>15GB</p>
-        </div>
-      </div>
-
-      <div className='mt-4 pt-4 border-t border-gray-200'>
-        <div className='flex items-center space-x-3 text-gray-700 cursor-pointer hover:text-primary-orange transition-colors'>
-          <Icon icon={"carbon:settings"} className='text-xl' />
-          <span>Account Settings</span>
-        </div>
+      {/* Action Links */}
+      <div className='flex flex-col gap-3 mt-5'>
+        <Link 
+          to='/settings'
+          onClick={toggleOpenProfile}
+          className='w-full flex items-center justify-center gap-2 py-2.5 bg-primary-orange text-white rounded-xl hover:bg-orange-600 transition-colors font-medium shadow-md shadow-orange-500/20'
+        >
+          <Icon icon={"carbon:user-profile"} className='text-lg' />
+          Edit Profile
+        </Link>
+        
+        <Link 
+          to='/settings'
+          onClick={toggleOpenProfile}
+          className='w-full flex items-center justify-center gap-2 py-2.5 bg-gray-50 text-gray-700 rounded-xl hover:bg-gray-100 transition-colors font-medium border border-gray-200'
+        >
+          <Icon icon={"carbon:settings"} className='text-lg' />
+          Account Settings
+        </Link>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import useStore from "../../../state/store";
+import { inviteUser } from "../../../functions/organizationFunctions";
 
 const TeamUsers = () => {
 	const { settings, updateSettings } = useStore();
@@ -20,29 +21,41 @@ const TeamUsers = () => {
 	};
 
 	const handleAddMember = async () => {
-		if (!newMember.name || !newMember.email) {
-			showToast("Please fill in all fields", "error");
+		if (!newMember.email) {
+			showToast("Please enter an email address", "error");
 			return;
 		}
 
 		setIsLoading(true);
-		// Simulate API call
-		await new Promise((resolve) => setTimeout(resolve, 1000));
+		try {
+			// Call the real organization invite API
+			await inviteUser({
+				email: newMember.email,
+				role: newMember.role.toLowerCase(),
+			});
 
-		const currentMembers = settings.teamMembers || [];
-		const newId = Math.max(...currentMembers.map((m) => m.id), 0) + 1;
-		const member = {
-			...newMember,
-			id: newId,
-			avatar: null,
-			status: "Active",
-		};
-
-		updateSettings("teamMembers", [...currentMembers, member]);
-		setIsLoading(false);
-		setIsAdding(false);
-		setNewMember({ name: "", email: "", role: "Viewer" });
-		showToast("Team member added successfully");
+			// Add to local store state so the UI reflects immediately
+			const currentMembers = settings.teamMembers || [];
+			const newId = Date.now();
+			const member = {
+				...newMember,
+				id: newId,
+				avatar: null,
+				status: "Invited",
+			};
+			updateSettings("teamMembers", [...currentMembers, member]);
+			setIsLoading(false);
+			setIsAdding(false);
+			setNewMember({ name: "", email: "", role: "Viewer" });
+			showToast("Invitation sent successfully");
+		} catch (error) {
+			setIsLoading(false);
+			const msg =
+				error?.response?.data?.message ||
+				error?.message ||
+				"Failed to send invitation";
+			showToast(msg, "error");
+		}
 	};
 
 	const handleRemoveMember = (id) => {

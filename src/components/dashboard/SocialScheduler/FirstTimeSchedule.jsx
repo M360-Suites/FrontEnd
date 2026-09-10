@@ -47,7 +47,7 @@ const FirstTimeSchedule = () => {
 			{
 				opacity: 0,
 			},
-			"-=0.2"
+			"-=0.2",
 		);
 
 		tl.from(
@@ -57,7 +57,7 @@ const FirstTimeSchedule = () => {
 				opacity: 0,
 				stagger: 0.1,
 			},
-			"-=0.2"
+			"-=0.2",
 		);
 
 		return () => {
@@ -103,8 +103,11 @@ const FirstTimeSchedule = () => {
 							</p>
 						</div>
 						<div className='flex items-center'>
-							<button className='px-6 py-2 md:px-8 md:py-3 bg-orange-gradient text-white rounded-xl'>
-								Upgrade to connect more socials
+							<button
+								onClick={handleCreateFirstPost}
+								className='px-6 py-2 md:px-8 md:py-3 bg-orange-gradient text-white rounded-xl'
+							>
+								Get Started...
 							</button>
 						</div>
 					</div>
@@ -137,8 +140,7 @@ const FirstTimeSchedule = () => {
 							</p>
 							<div className='w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center'>
 								<Icon
-									onClick={toggleConnectModal}
-									className='text-white cursor-pointer'
+									className='text-white'
 									icon={"hugeicons:connect"}
 								></Icon>
 							</div>
@@ -158,8 +160,7 @@ const FirstTimeSchedule = () => {
 					{/* Card 2 */}
 					<div
 						ref={card2Ref}
-						onClick={handleCreateFirstPost}
-						className={`flex flex-col create-card p-4 md:p-6 rounded-md shadow-sm w-full md:w-1/3 mb-4 md:mb-0 border border-gray-100 cursor-pointer transition-transform hover:scale-105 ${
+						className={`flex flex-col create-card p-4 md:p-6 rounded-md shadow-sm w-full md:w-1/3 mb-4 md:mb-0 border border-gray-100 ${
 							isCreating ? "opacity-70" : ""
 						}`}
 					>

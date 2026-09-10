@@ -111,8 +111,11 @@ const FirstTimeCampaign = () => {
 							</p>
 						</div>
 						<div className='flex items-center'>
-							<button className='px-8 py-2 bg-orange-gradient text-white rounded-xl hover:opacity-90 transition-opacity'>
-								Upgrade
+							<button 
+								onClick={handleToggleModal}
+								className='px-8 py-2 bg-orange-gradient text-white rounded-xl hover:opacity-90 transition-opacity'
+							>
+								Get Started.
 							</button>
 						</div>
 					</div>
@@ -213,15 +216,14 @@ const FirstTimeCampaign = () => {
 									: "Create First Campaign"}
 							</p>
 							<div
-								onClick={handleToggleModal}
-								className={`cursor-pointer w-6 h-6 rounded-full flex items-center justify-center transition-colors ${
+								className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors ${
 									campaignCreated
-										? "bg-green-400 hover:bg-green-500"
-										: "bg-yellow-400 hover:bg-yellow-500"
+										? "bg-green-400"
+										: "bg-yellow-400"
 								}`}
 								title={
 									campaignCreated
-										? "Create another campaign"
+										? "Campaign Created"
 										: "Create your first campaign"
 								}
 							>
@@ -247,16 +249,6 @@ const FirstTimeCampaign = () => {
 								alt='Create Campaign'
 							/>
 						</div>
-						{campaignCreated && (
-							<div className='flex justify-center'>
-								<button
-									onClick={handleToggleModal}
-									className='px-4 py-2 bg-orange-gradient text-white rounded-lg hover:opacity-90 transition-opacity text-sm'
-								>
-									Create Another Campaign
-								</button>
-							</div>
-						)}
 					</div>
 				</div>
 			</div>
