@@ -1,16 +1,24 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import useStore from "../../../state/store";
+import { useAuth } from "../../../context/UseAuth";
 import { toast } from "sonner";
 import { Icon } from "@iconify/react";
 
 const AccountProfile = () => {
+	const { user } = useAuth();
 	const { settings, updateSettings } = useStore();
-	const [formData, setFormData] = useState(settings.account);
+	
+	const [formData, setFormData] = useState({
+		name: user?.user?.name || user?.user?.companyName || settings.account.companyName || "",
+		email: user?.user?.email || settings.account.email || "",
+		phoneNumber1: settings.account.phoneNumber1 || "",
+		phoneNumber2: settings.account.phoneNumber2 || "",
+		address: settings.account.address || "",
+		city: settings.account.city || "",
+		country: settings.account.country || "Nigeria",
+	});
+	
 	const [isLoading, setIsLoading] = useState(false);
-	const [previewImage, setPreviewImage] = useState(
-		formData.profileImage
-	);
-	const fileInputRef = useRef(null);
 
 	const countries = [
 		{ name: "Nigeria", code: "NG", flag: "🇳🇬", dialCode: "+234" },
@@ -26,18 +34,6 @@ const AccountProfile = () => {
 
 	const handleChange = (field, value) => {
 		setFormData((prev) => ({ ...prev, [field]: value }));
-	};
-
-	const handleImageChange = (e) => {
-		const file = e.target.files[0];
-		if (file) {
-			const reader = new FileReader();
-			reader.onloadend = () => {
-				setPreviewImage(reader.result);
-				handleChange("profileImage", reader.result);
-			};
-			reader.readAsDataURL(file);
-		}
 	};
 
 	const handleSave = async () => {
@@ -85,74 +81,30 @@ const AccountProfile = () => {
 				</button>
 			</div>
 
-			<div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 space-y-8'>
-				{/* Profile Image */}
-				<div>
-					<div className='flex items-center gap-3 mb-3'>
-						<Icon
-							icon='mdi:image-outline'
-							className='text-blue-600'
-						/>
-						<h2 className='text-lg font-semibold text-gray-800'>
-							Profile Image
-						</h2>
-					</div>
-					<div className='flex items-center gap-6'>
-						<div className='relative'>
-							<div className='w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center overflow-hidden'>
-								{previewImage ? (
-									<img
-										src={previewImage}
-										alt='Profile'
-										className='w-full h-full object-cover'
-									/>
-								) : (
-									<Icon
-										icon='mdi:account'
-										className='text-4xl text-white'
-									/>
-								)}
-							</div>
-						</div>
-						<button
-							onClick={() => fileInputRef.current?.click()}
-							className='flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium'
-						>
-							<Icon icon='mdi:pencil' className='text-lg' />
-							Change Profile Image
-						</button>
-						<input
-							ref={fileInputRef}
-							type='file'
-							accept='image/*'
-							onChange={handleImageChange}
-							className='hidden'
-						/>
-					</div>
-				</div>
+			<div className='bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 space-y-8'>
 
-				{/* Company Information */}
+				{/* Account Information */}
 				<div>
-					<div className='flex items-center gap-3 mb-4'>
+					<div className='flex items-center gap-3 mb-6'>
 						<Icon
-							icon='mdi:office-building'
-							className='text-blue-600'
+							icon='mdi:card-account-details-outline'
+							className='text-blue-600 text-xl'
 						/>
 						<h2 className='text-lg font-semibold text-gray-800'>
-							Company Information
+							Account Details
 						</h2>
 					</div>
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 						<div>
 							<label className='block text-sm font-medium text-gray-700 mb-2'>
-								Company Name
+								Account Name
 							</label>
 							<div className='relative'>
 								<input
 									type='text'
-									value={formData.companyName}
+									value={formData.name}
 									onChange={(e) =>
-										handleChange("companyName", e.target.value)
+										handleChange("name", e.target.value)
 									}
 									className='w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
 								/>

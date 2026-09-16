@@ -79,34 +79,34 @@ export const sideBarData = [
 		path: "/ads-manager",
 		icon: "material-symbols:ads-click",
 	},
-	{
-		name: "Community Hub",
-		path: "/community-hub",
-		icon: "fluent:people-community-24-filled",
-	},
-	{
-		name: "SEO Tools",
-		path: "/seo-tools",
-		icon: "ri:seo-fill",
-		dropdownItems: [
-			{ name: "SEO Dashboard", path: "/seo-tools" },
-			{ name: "Site Audit", path: "/seo-tools/site-audit" },
-			{ name: "Domain Overview", path: "/seo-tools/domain-overview" },
-			{
-				name: "Traffic Analytics",
-				path: "/seo-tools/traffic-analytics",
-			},
-			{
-				name: "Keyword overview",
-				path: "/seo-tools/keyword-overview",
-			},
-			{ name: "Backlink Audit", path: "/seo-tools/backlink-audit" },
-			{
-				name: "Backlink Analytic",
-				path: "/seo-tools/backlink-analytic",
-			},
-		],
-	},
+	// {
+	// 	name: "Community Hub",
+	// 	path: "/community-hub",
+	// 	icon: "fluent:people-community-24-filled",
+	// },
+	// {
+	// 	name: "SEO Tools",
+	// 	path: "/seo-tools",
+	// 	icon: "ri:seo-fill",
+	// 	dropdownItems: [
+	// 		{ name: "SEO Dashboard", path: "/seo-tools" },
+	// 		{ name: "Site Audit", path: "/seo-tools/site-audit" },
+	// 		{ name: "Domain Overview", path: "/seo-tools/domain-overview" },
+	// 		{
+	// 			name: "Traffic Analytics",
+	// 			path: "/seo-tools/traffic-analytics",
+	// 		},
+	// 		{
+	// 			name: "Keyword overview",
+	// 			path: "/seo-tools/keyword-overview",
+	// 		},
+	// 		{ name: "Backlink Audit", path: "/seo-tools/backlink-audit" },
+	// 		{
+	// 			name: "Backlink Analytic",
+	// 			path: "/seo-tools/backlink-analytic",
+	// 		},
+	// 	],
+	// },
 	{
 		name: "Settings",
 		path: "/settings",
