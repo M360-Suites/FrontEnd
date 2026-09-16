@@ -14,6 +14,9 @@ export default defineConfig({
 				short_name: "M360",
 				description: "M360 Application",
 				theme_color: "#ffffff",
+				background_color: "#ffffff",
+				display: "standalone",
+				start_url: "/",
 				icons: [
 					{
 						src: "pwa-192x192.png",
